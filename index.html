@@ -3,115 +3,68 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  
-  <!--header-->
   <title>UAE Visitors Count Analysis</title>
-<script src="https://public.tableau.com/javascripts/api/viz_v1.js"></script>
+  <script src="https://public.tableau.com/javascripts/api/viz_v1.js"></script>
 </head>
 <body>
   <header>
     <h1>UAE Visitors Count Analysis</h1>
   </header>
   
-  <!--Section 1-->
+  <!-- Section 1: Intro + Excel chart -->
   <section>
     <h2>Overview of Trends and Policy Impact</h2>
-    <p> From tourism to real estates, then to the post-covid revival, the United Arab Emirates witnessed many success and
-    rationalised through its immaculate policies and economic decisions.  </p>
-
-  <!--timeline-->
-<img
-  src="chart.png"
-  alt="My Excel Chart"
-  style="max-width:100%; height:auto; margin:40px 0;">
- </section>
-<p>In late 2013 and early 2014 the UAE rolled out 30- and 90-day visas-on-arrival to over 80 Western countries and GCC nationalities– up from a narrow set before– which immediately unlocked spontaneous travel for millions. (The National) 
- 
-At the same time, the Department of Tourism &commerce marketing brought its “visitor” definition (from 2014 onward) to include day-trip and transit passengers – airport stopovers and cruise-ship calls alongside overnight stays, pushing reported arrivals from under 1 million in 2013 to over 4 million byn 2015. (amazonaws, Dubai Smart City)
-</p>
-
-<section>
-<div class='tableauPlaceholder' id='viz1751994676432' style='position: relative; width:100%; height:600px;'>
-  <noscript>
-    <a href='#'>
-      <img alt='GCC Nationals count visiting the UAE ' 
-        src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;GC&#47;GCCNationalscountvisitingtheUAE&#47;Sheet1&#47;1_rss.png' 
-        style='border: none' />
-    </a>
-  </noscript>
-  <object class='tableauViz'  style='display:none;'>
-    <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> 
-    <param name='embed_code_version' value='3' /> 
-    <param name='site_root' value='' />
-    <param name='name' value='GCCNationalscountvisitingtheUAE&#47;Sheet1' />
-    <param name='tabs' value='no' />
-    <param name='toolbar' value='yes' />
-    <param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;GC&#47;GCCNationalscountvisitingtheUAE&#47;Sheet1&#47;1.png' /> 
-    <param name='animate_transition' value='yes' />
-    <param name='display_static_image' value='yes' />
-    <param name='display_spinner' value='yes' />
-    <param name='display_overlay' value='yes' />
-    <param name='display_count' value='yes' />
-    <param name='language' value='en-GB' />
-    <param name='filter' value='publish=yes' />
-  </object>
-</div>
-  <script type='text/javascript'>                    
-    var divElement = document.getElementById('viz1751994676432');                    
-    var vizElement = divElement.getElementsByTagName('object')[0];                    
-    vizElement.style.width='100%';
-    vizElement.style.height=(divElement.offsetWidth*0.75)+'px';                    
-    var scriptElement = document.createElement('script');                                      
-    vizElement.parentNode.insertBefore(scriptElement, vizElement);                
-  </script>
-
-
+    <p>
+      From tourism to real estate…and so on.
+    </p>
+    <img src="chart.png"
+         alt="My Excel Chart"
+         style="max-width:100%; height:auto; margin:40px 0;">
+  </section>
   
+  <!-- Tableau embeds -->
+  <section>
+    <h2>Visitor Trends</h2>
+
+    <!-- First Tableau viz -->
+    <div class='tableauPlaceholder' id='viz1751994676432'
+         style='position: relative; width:100%; height:600px;'>
+      <!-- …object/embed code here… -->
+    </div>
+    <script>
+      var div1 = document.getElementById('viz1751994676432');
+      var obj1 = div1.getElementsByTagName('object')[0];
+      obj1.style.width  = '100%';
+      obj1.style.height = (div1.offsetWidth * 0.75) + 'px';
+      var s1 = document.createElement('script');
+      s1.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';
+      obj1.parentNode.insertBefore(s1, obj1);
+    </script>
+
+    <!-- Second Tableau viz -->
+    <div class="tableauPlaceholder" id="viz1751573400154"
+         style="position: relative; width:100%; height:600px;">
+      <!-- …object/embed code here… -->
+    </div>
+    <script>
+      var div2 = document.getElementById('viz1751573400154');
+      var obj2 = div2.getElementsByTagName('object')[0];
+      obj2.style.width  = '100%';
+      obj2.style.height = (div2.offsetWidth * 0.75) + 'px';
+      var s2 = document.createElement('script');
+      s2.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';
+      obj2.parentNode.insertBefore(s2, obj2);
+    </script>
+  </section>
   
-<div class= "tableauPlaceholder" id="viz1751573400154" style="position: relative">
-  <noscript>
-    <a href='#'>
-      <img alt ='UAE guest trend over time and key policies'
-          src= 'https://public.tableau.com/static/images/UA/UAEguesttrendovertimeandkeypolicies/Policies/1_rss.png'
-          style='border: none' />
-    </a>
-  </noscript>
-  <object class = 'tableauViz' style='display:none;'>
-    <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F'/>
-    <param name='embed_code_version' value='3' />
-    <param name='site_root' value='' />
-    <param name='name' value='UAEguesttrendovertimeandkeypolicies/Policies' />
-    <param name='tabs' value='no' />
-    <param name='toolbar' value='yes' />
-    <param name='static_image' value='https://public.tableau.com/static/images/UA/UAEguesttrendovertimeandkeypolicies/Policies/1.png' />
-    <param name='animate_transition' value='yes' />
-    <param name='display_static_image' value='yes' />
-    <param name='display_spinner' value='yes' />
-    <param name='display_overlay' value='yes' />
-    <param name='display_count' value='yes' />
-    <param name='language' value='en-GB' />
-  </object>
-</div>
-<script type='text/javascript'>
-  var divElement = document.getElementById('viz1751573400154');
-  var vizElement = divElement.getElementsByTagName('object')[0];
-  vizElement.style.width = '100%';
-  vizElement.style.height = (divElement.offsetWidth * 0.75) + 'px';
-  var scriptElement = document.createElement('script');
-  vizElement.parentNode.insertBefore(scriptElement, vizElement);
-</section>
-<section>
-  <h2>Average Spending by Travel Purpose</h2>
-  <p>This bar chart shows how average spend varies by trip purpose.</p>
+  <!--spending chart -->
+  <section>
+    <h2>Average Spending by Travel Purpose</h2>
+    <p>This bar chart shows how average spend varies by trip purpose.</p>
+    <img src="spending.png"
+         alt="Average Tourist Spending by Travel Purpose"
+         style="max-width:100%; height:auto; margin:20px 0;">
+  </section>
 
-  <img
-    src="spending.png"
-    alt="Average Tourist Spending by Travel Purpose"
-    style="max-width:100%; height:auto; margin:20px 0;"
-  >
-
-      </section>
-
-</script> 
- </body>
+</body>
 </html>
