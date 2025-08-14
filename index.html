@@ -89,31 +89,75 @@
 </section>
 
 <script>
-window.addEventListener('DOMContentLoaded', function () {
-    // make sure the div exists
-    const el = document.getElementById('sankey');
-    if (!el) { console.error('Missing #sankey div'); return; }
-    // make sure Plotly loaded
-    if (!window.Plotly) { console.error('Plotly not loaded'); return; }
+  window.addEventListener('DOMContentLoaded', function () {
+    if (!window.Plotly) return console.error('Plotly not loaded');
 
-    const sankeyLabels = [
-      "Entrepreneur","Artist","Retiree","Tech Bro","Researcher","Investor",
-      "10-Year Visa","5-Year Visa","Denied","Pending"
+    const labels = [
+      "Entrepreneur","Artist","Retiree","Tech/IT","Researcher","Investor",
+      "10-Year Visa","5-Year Visa","Pending","Denied"
     ];
 
-    const sankeySource = [0,0,0, 1,1, 2,2, 3,3, 4,4, 5,5];
-    const sankeyTarget = [6,7,8, 6,9, 7,8, 6,8, 6,9, 6,7];
-    const sankeyValue  = [1500,300,200, 1000,500, 800,400, 900,300, 1200,300, 2500,1000];
+    // sources (0–5) -> targets (6–9)
+    const source = [0,0,0, 1,1, 2,2, 3,3, 4,4, 5,5];
+    const target = [6,7,9, 6,8, 7,9, 6,9, 6,8, 6,7];
+    const value  = [1500,300,200, 1000,500, 800,400, 900,300, 1200,300, 2500,1000];
+
+    // Compute % of each source
+    const leftTotals = Array(6).fill(0);
+    source.forEach((s, i) => leftTotals[s] += value[i]);
+    const pctOfSource = source.map((s, i) => (100 * value[i] / leftTotals[s]));
+
+    // Colors
+    const COLORS = {
+      left: "#7db3ff",
+      y10:  "#d4af37", // 10-year
+      y5:   "#b8860b", // 5-year
+      pend: "#7b8aa0",
+      deny: "#e74c3c"
+    };
+
+    const nodeColors = labels.map(l => {
+      if (/10-?year/i.test(l)) return COLORS.y10;
+      if (/5-?year/i.test(l))  return COLORS.y5;
+      if (/pending/i.test(l))  return COLORS.pend;
+      if (/denied/i.test(l))   return COLORS.deny;
+      return COLORS.left;
+    });
+
+    function rgba(hex, a) {
+      const h = hex.replace('#','');
+      const r = parseInt(h.substring(0,2),16);
+      const g = parseInt(h.substring(2,4),16);
+      const b = parseInt(h.substring(4,6),16);
+      return `rgba(${r},${g},${b},${a})`;
+    }
+
+    const linkColors = target.map(tIdx => rgba(nodeColors[tIdx], 0.45));
 
     Plotly.newPlot('sankey', [{
       type: 'sankey',
-      node: { label: sankeyLabels },
-      link: { source: sankeySource, target: sankeyTarget, value: sankeyValue }
+      arrangement: 'snap',
+      node: {
+        label: labels,
+        color: nodeColors,
+        pad: 16,
+        thickness: 18,
+        line: { color: 'rgba(0,0,0,0.25)', width: 1 }
+      },
+      link: {
+        source, target, value,
+        color: linkColors,
+        customdata: pctOfSource,
+        hovertemplate:
+          '%{source.label} → %{target.label}<br>' +
+          '<b>%{value}</b> applications ' +
+          '(<b>%{customdata:.1f}%</b> of %{source.label})<extra></extra>'
+      }
     }], {
-      margin: { t: 10, l: 10, r: 10, b: 10 }
-    }, { displaylogo: false });
+      margin: { t: 10, l: 10, r: 10, b: 10 },
+      font: { size: 12 }
+    }, { displaylogo: false, responsive: true });
   });
-</script>
-            
+</script>          
 </body>
 </html>
