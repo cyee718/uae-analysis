@@ -4,8 +4,9 @@
       <meta charset="UTF-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <title>UAE Visitors Count Analysis</title>
-      <script src="https://public.tableau.com/javascripts/api/viz_v1.js"></script>
-      <script defer src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
+      <script src="https://public.tableau.com/javascripts/api/viz_v1.js">
+<script defer src="https://cdn.jsdelivr.net/npm/plotly.js-dist-min@2.27.0/plotly.min.js"></script>
+
       </head>
       <body>
       <header>
@@ -67,14 +68,7 @@
   vizElement.style.height = '600px'; // fallback
 </script>
 
-  <!-- Golden Visa Sankey -->
-<section>
-  <h2>Golden Visa Applicant Types → Outcomes</h2>
-  <p class="note" style="color:#555; font-size:0.95rem;">
-    Illustrative flows only. Replace the values with your data when available.
-  </p>
-  <div id="sankey" style="width:100%; max-width:900px; height:520px; margin:20px auto;"></div>
-</section>
+  
 
   <!--spending chart -->
   <section>
@@ -85,6 +79,14 @@
          style="max-width:100%; height:auto; margin:20px 0;">
   </section>
 
+            <!-- Golden Visa Sankey -->
+<section>
+  <h2>Golden Visa Applicant Types → Outcomes</h2>
+  <p class="note" style="color:#555; font-size:0.95rem;">
+    Illustrative flows only. Replace the values with your data when available.
+  </p>
+<div id="sankey" style="width:100%;max-width:900px;height:520px;margin:20px auto;"></div>
+</section>
 window.addEventListener('DOMContentLoaded', function () {
     // make sure the div exists
     const el = document.getElementById('sankey');
