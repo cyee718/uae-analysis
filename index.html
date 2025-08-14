@@ -69,7 +69,15 @@
   vizElement.parentNode.insertBefore(scriptElement, vizElement);
 </script>
 
-  
+  <!-- Golden Visa Sankey -->
+<section>
+  <h2>Golden Visa Applicant Types → Outcomes</h2>
+  <p class="note" style="color:#555; font-size:0.95rem;">
+    Illustrative flows only. Replace the values with your data when available.
+  </p>
+  <div id="sankey" style="width:100%; max-width:900px; height:520px; margin:20px auto;"></div>
+</section>
+
   <!--spending chart -->
   <section>
     <h2>Average Spending by Travel Purpose</h2>
@@ -79,5 +87,27 @@
          style="max-width:100%; height:auto; margin:20px 0;">
   </section>
 
+<script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
+<script>
+  // Labels: left = applicant types, right = outcomes
+  const sankeyLabels = [
+    "Entrepreneur","Artist","Retiree","Tech Bro","Researcher","Investor",
+    "10-Year Visa","5-Year Visa","Denied","Pending"
+  ];
+
+  // Indices match positions in sankeyLabels
+  const sankeySource = [0,0,0, 1,1, 2,2, 3,3, 4,4, 5,5];
+  const sankeyTarget = [6,7,8, 6,9, 7,8, 6,8, 6,9, 6,7];
+  const sankeyValue  = [1500,300,200, 1000,500, 800,400, 900,300, 1200,300, 2500,1000];
+
+  Plotly.newPlot('sankey', [{
+    type: 'sankey',
+    node: { label: sankeyLabels },
+    link: { source: sankeySource, target: sankeyTarget, value: sankeyValue }
+  }], {
+    margin: { t: 10, l: 10, r: 10, b: 10 }
+  }, { displaylogo: false });
+</script>
+            
 </body>
 </html>
