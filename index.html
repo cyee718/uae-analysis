@@ -83,81 +83,40 @@
 <section>
   <h2>Golden Visa Applicant Types → Outcomes</h2>
   <p class="note" style="color:#555; font-size:0.95rem;">
-    Illustrative flows only. Replace the values with your data when available.
   </p>
 <div id="sankey" style="width:100%;max-width:900px;height:520px;margin:20px auto;"></div>
 </section>
 
-<script>
-  window.addEventListener('DOMContentLoaded', function () {
-    if (!window.Plotly) return console.error('Plotly not loaded');
+<div class="wrap">
+    <h1>UAE Golden Visa — Approvals by Year (Official)</h1>
+    <p class="note">Only years with publicly reported official counts are shown. Source noted below.</p>
+    <div id="chart"></div>
+    <p class="note" style="margin-top:8px">Source: UAE Emirates News Agency (WAM) citing GDRFA Dubai — 79,617 approvals in 2022; 47,150 in 2021. 2023 figures are widely reported as 158,000 (Gulf News citing GDRFA) but are not included here to keep to official releases only.</p>
+  </div>
 
-    const labels = [
-      "Entrepreneur","Artist","Retiree","Tech/IT","Researcher","Investor",
-      "10-Year Visa","5-Year Visa","Pending","Denied"
-    ];
+  <script>
+    window.addEventListener('DOMContentLoaded', function(){
+      if(!window.Plotly){console.error('Plotly failed to load');return;}
+      const years  = [2021, 2022];
+      const counts = [47150, 79617];
 
-    // sources (0–5) -> targets (6–9)
-    const source = [0,0,0, 1,1, 2,2, 3,3, 4,4, 5,5];
-    const target = [6,7,9, 6,8, 7,9, 6,9, 6,8, 6,7];
-    const value  = [1500,300,200, 1000,500, 800,400, 900,300, 1200,300, 2500,1000];
+      const data = [{
+        type: 'bar',
+        x: years,
+        y: counts,
+        marker: { color: ['#8aa3ff','#d4af37'] },
+        hovertemplate: 'Year %{x}: <b>%{y:,}</b> approvals<extra></extra>'
+      }];
 
-    // Compute % of each source
-    const leftTotals = Array(6).fill(0);
-    source.forEach((s, i) => leftTotals[s] += value[i]);
-    const pctOfSource = source.map((s, i) => (100 * value[i] / leftTotals[s]));
+      const layout = {
+        margin: {t:30,l:60,r:20,b:60},
+        yaxis: { title: 'Approvals', separatethousands: true, rangemode: 'tozero' },
+        xaxis: { title: 'Year' },
+        showlegend: false
+      };
 
-    // Colors
-    const COLORS = {
-      left: "#7db3ff",
-      y10:  "#d4af37", // 10-year
-      y5:   "#b8860b", // 5-year
-      pend: "#7b8aa0",
-      deny: "#e74c3c"
-    };
-
-    const nodeColors = labels.map(l => {
-      if (/10-?year/i.test(l)) return COLORS.y10;
-      if (/5-?year/i.test(l))  return COLORS.y5;
-      if (/pending/i.test(l))  return COLORS.pend;
-      if (/denied/i.test(l))   return COLORS.deny;
-      return COLORS.left;
+      Plotly.newPlot('chart', data, layout, {displaylogo:false,responsive:true});
     });
-
-    function rgba(hex, a) {
-      const h = hex.replace('#','');
-      const r = parseInt(h.substring(0,2),16);
-      const g = parseInt(h.substring(2,4),16);
-      const b = parseInt(h.substring(4,6),16);
-      return `rgba(${r},${g},${b},${a})`;
-    }
-
-    const linkColors = target.map(tIdx => rgba(nodeColors[tIdx], 0.45));
-
-    Plotly.newPlot('sankey', [{
-      type: 'sankey',
-      arrangement: 'snap',
-      node: {
-        label: labels,
-        color: nodeColors,
-        pad: 16,
-        thickness: 18,
-        line: { color: 'rgba(0,0,0,0.25)', width: 1 }
-      },
-      link: {
-        source, target, value,
-        color: linkColors,
-        customdata: pctOfSource,
-        hovertemplate:
-          '%{source.label} → %{target.label}<br>' +
-          '<b>%{value}</b> applications ' +
-          '(<b>%{customdata:.1f}%</b> of %{source.label})<extra></extra>'
-      }
-    }], {
-      margin: { t: 10, l: 10, r: 10, b: 10 },
-      font: { size: 12 }
-    }, { displaylogo: false, responsive: true });
-  });
-</script>          
+  </script>          
 </body>
 </html>
