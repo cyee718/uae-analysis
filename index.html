@@ -8,6 +8,35 @@
 <script defer src="https://cdn.jsdelivr.net/npm/plotly.js-dist-min@2.27.0/plotly.min.js"></script>
 <style>
     p { margin: 0 0 1rem; line-height: 1.6; } 
+ :root{
+    --bg:#f6f7fb;      
+    --panel:#ffffff;   
+    --ink:#1d2330;     
+    --muted:#5b667a;  
+    --accent:#2b6cb0;  
+    --accent-2:#d4af37;
+    --border:#e6e9f2; 
+  }
+  html, body { font-family: Georgia, "Times New Roman", Times, serif; }
+  body{ margin:0; background:var(--bg); color:var(--ink); line-height:1.6; }
+  .container{ max-width:1100px; margin:0 auto; padding:24px; }
+  header{ padding:12px 0 8px; }
+  h1{ font-size:2rem; margin:0 0 8px; letter-spacing:.2px; font-weight:700; }
+  h2{ font-size:1.25rem; margin:0 0 12px; border-left:4px solid var(--accent); padding-left:10px; font-weight:700; }
+  p{ margin:0 0 1rem; }
+  .muted{ color:var(--muted); }
+  .card{
+    background:var(--panel);
+    border:1px solid var(--border);
+    border-radius:16px;
+    padding:20px;
+    box-shadow:0 6px 20px rgba(22,33,66,.06);
+    margin:16px 0;
+  }
+  img, iframe{ border-radius:12px; }
+  a{ color:var(--accent); text-decoration:none; }
+  a:hover{ text-decoration:underline; }
+  hr{ border:none; height:1px; background:var(--border); margin:24px 0; }
   </style>
       </head>
       <body>
