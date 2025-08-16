@@ -156,7 +156,10 @@
         yaxis: { title: 'Billions (2015 US$)', separatethousands: true, rangemode: 'tozero' }
       }, { displaylogo: false, responsive: true });
 
-      
+       } catch (e) {
+      console.error(e);
+      document.getElementById('uae-gdp-level').innerHTML =
+        '<div style="color:#b00">Could not load World Bank data.</div>';
     }
   });
 </script>
