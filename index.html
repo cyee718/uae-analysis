@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 <head>
       <meta charset="UTF-8" />
@@ -137,23 +137,23 @@
 
       if (!data.length) throw new Error('No GDP data returned');
 
-      const years = data.map(d=>d.year);
-      const billions = data.map(d=> d.val / 1e9);
+ const years = data.map(d => d.year);
+      const billions = data.map(d => d.val / 1e9);
 
       Plotly.newPlot('uae-gdp-level', [{
-            type: 'scatter',
-            model: 'lines+markers',
-            x: years,
-            y: billions,
-            line: {color: '#2b6cb0', width:2},
-            marker:{size:6, color:'#2b6cb0'},
-      hovertemplate: 'Year %{x}: <b>%{y:.1f}%</b><extra></extra>',
+        type: 'scatter',
+        mode: 'lines+markers',
+        x: years,
+        y: billions,
+        line: { color: '#2b6cb0', width: 2 },
+        marker: { size: 6, color: '#2b6cb0' },
+        hovertemplate: 'Year %{x}: <b>%{y:.1f} bn</b> (2015 US$)<extra></extra>',
         name: 'Real GDP'
-      }],{
+      }], {
         margin: { t: 20, l: 60, r: 20, b: 50 },
         xaxis: { title: 'Year', dtick: 2 },
-        yaxis: { title: 'Billions (2015 US$)', separatethousands: true, rangemode:'tozero'},
-            {displaylogo: false, responsive: true });
+        yaxis: { title: 'Billions (2015 US$)', separatethousands: true, rangemode: 'tozero' }
+      }, { displaylogo: false, responsive: true });
 const yoy = [];
       for (let i = 1; i < data.length; i++) {
         yoy.push({ year: data[i].year, pct: ((data[i].val / data[i-1].val) - 1) * 100 });
