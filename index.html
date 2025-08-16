@@ -23,6 +23,16 @@
          alt="My Excel Chart"
          style="max-width:100%; height:auto; margin:40px 0;">
   </section>
+            
+<!-- Real GDP Growth -->
+<section>
+  <h2>UAE Real GDP Growth (% YoY)</h2>
+  <div id="uae-gdp" style="width:100%;max-width:900px;height:420px;margin:16px auto;"></div>
+  <p style="color:#555;font-size:0.95rem;margin:8px 0 0;">
+    Source: World Bank, indicator <code>NY.GDP.MKTP.KD.ZG</code> (Real GDP growth, annual %).
+    Latest year: <span id="gdp-latest-year">…</span>
+  </p>
+</section>
 
 <!-- GCC Tableau viz -->
     <section>
@@ -110,6 +120,52 @@
 
       Plotly.newPlot('chart', data, layout, {displaylogo:false,responsive:true});
     });
-  </script>          
+  </script>
+<script>
+  window.addEventListener('DOMContentLoaded', async () => {
+    if (!window.Plotly) { console.error('Plotly not loaded'); return; }
+
+    const url = 'https://api.worldbank.org/v2/country/ARE/indicator/NY.GDP.MKTP.KD.ZG?format=json&per_page=80';
+    try {
+      const res = await fetch(url);
+      const json = await res.json();
+      const rows = (json && json[1]) ? json[1] : [];
+      // keep years 2005+ and non null values
+      const data = rows
+        .filter(d => d.value !== null && +d.date >= 2005)
+        .map(d => ({ year: +d.date, value: +d.value }))
+        .sort((a,b) => a.year - b.year);
+
+      if (!data.length) throw new Error('No GDP data returned');
+
+      // push latest year
+      document.getElementById('gdp-latest-year').textContent = data[data.length - 1].year;
+
+      const trace = {
+        type: 'scatter',
+        mode: 'lines+markers',
+        x: data.map(d => d.year),
+        y: data.map(d => d.value),
+        line: { color: '#2b6cb0', width: 2 },
+        marker: { size: 6, color: '#2b6cb0' },
+        hovertemplate: 'Year %{x}: <b>%{y:.1f}%</b><extra></extra>',
+        name: 'Real GDP growth'
+      };
+
+      const layout = {
+        margin: { t: 20, l: 60, r: 20, b: 50 },
+        xaxis: { title: 'Year', dtick: 2 },
+        yaxis: { title: 'Growth (YoY, %)', ticksuffix: '%', zeroline: true },
+      };
+
+      Plotly.newPlot('uae-gdp', [trace], layout, { displaylogo: false, responsive: true });
+    } catch (e) {
+      console.error(e);
+      document.getElementById('uae-gdp').innerHTML =
+        '<div style="color:#b00">Could not load World Bank data.</div>';
+    }
+  });
+</script>
+
 </body>
 </html>
