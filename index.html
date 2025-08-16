@@ -39,6 +39,8 @@
   </style>
       </head>
       <body>
+         <div class="container">
+
       <header>
         <h1>UAE Visitors Count Analysis</h1>
       </header>
@@ -153,11 +155,17 @@
       }];
 
       const layout = {
-        margin: {t:30,l:60,r:20,b:60},
-        yaxis: { title: 'Approvals', separatethousands: true, rangemode: 'tozero' },
-        xaxis: { title: 'Year' },
-        showlegend: false
-      };
+  margin: { t: 30, l: 60, r: 20, b: 60 },
+  font: { family: 'Georgia, serif', color: '#1d2330' },
+  paper_bgcolor: 'rgba(0,0,0,0)',
+  plot_bgcolor: '#ffffff',
+  xaxis: { title: 'Year', gridcolor: '#ecf0f6', linecolor: '#ccd3e1', zerolinecolor: '#eaeef6' },
+  yaxis: { title: 'Approvals', separatethousands: true, rangemode: 'tozero',
+           gridcolor: '#ecf0f6', linecolor: '#ccd3e1', zerolinecolor: '#eaeef6' },
+  showlegend: false,
+  colorway: ['#2b6cb0', '#d4af37', '#6f42c1', '#ff7f50']
+};
+
 
       Plotly.newPlot('chart', data, layout, {displaylogo:false,responsive:true});
     });
@@ -227,7 +235,6 @@
         shapes, annotations
       };
 
-      Plotly.newPlot('uae-gdp-level', [trace], layout, { displaylogo:false, responsive:true });
 Plotly.newPlot('uae-gdp-level', [trace], {
   margin: { t: 20, l: 60, r: 20, b: 50 },
   font: { family: 'Georgia, serif', color: '#1d2330' },
@@ -247,6 +254,6 @@ Plotly.newPlot('uae-gdp-level', [trace], {
     }
   });
 </script>
-
+         </div>
 </body>
 </html>
