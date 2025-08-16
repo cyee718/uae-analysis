@@ -26,14 +26,13 @@
             
 <!-- Real GDP Growth -->
 <section>
-  <h2>UAE Real GDP Growth (% YoY)</h2>
-  <div id="uae-gdp" style="width:100%;max-width:900px;height:420px;margin:16px auto;"></div>
-  <p style="color:#555;font-size:0.95rem;margin:8px 0 0;">
-    Source: World Bank, indicator <code>NY.GDP.MKTP.KD.ZG</code> (Real GDP growth, annual %).
-    Latest year: <span id="gdp-latest-year">…</span>
+  <h2>UAE Real GDP</h2>
+  <div id="uae-gdp-level" style="width:100%;max-width:900px;height:420px;margin:16px auto;"></div>
+  <div id="uae-gdp-notes" style="color:#555;font-size:0.95rem;max-width:900px;margin:8px auto 0;"></div>
+  <p style="color:#666;font-size:0.9rem;margin:8px auto 0;max-width:900px;">
+    Source: World Bank (real GDP, constant 2015 US dollars).
   </p>
 </section>
-
 <!-- GCC Tableau viz -->
     <section>
   <h2>GCC Nationals Visiting the UAE</h2>
@@ -123,7 +122,7 @@
   </script>
 <script>
   window.addEventListener('DOMContentLoaded', async () => {
-    if (!window.Plotly) { console.error('Plotly not loaded'); return; }
+    if (!window.Plotly) { console.error('Plotly not loaded');
 
     const url = 'https://api.worldbank.org/v2/country/ARE/indicator/NY.GDP.MKTP.KD.ZG?format=json&per_page=80';
     try {
@@ -138,30 +137,53 @@
 
       if (!data.length) throw new Error('No GDP data returned');
 
-      // push latest year
-      document.getElementById('gdp-latest-year').textContent = data[data.length - 1].year;
+      const years = data.map(d=>d.year);
+      const billions = data.map(d=> d.val / 1e9);
 
-      const trace = {
-        type: 'scatter',
-        mode: 'lines+markers',
-        x: data.map(d => d.year),
-        y: data.map(d => d.value),
-        line: { color: '#2b6cb0', width: 2 },
-        marker: { size: 6, color: '#2b6cb0' },
-        hovertemplate: 'Year %{x}: <b>%{y:.1f}%</b><extra></extra>',
-        name: 'Real GDP growth'
-      };
-
-      const layout = {
+      Plotly.newPlot('uae-gdp-level', [{
+            type: 'scatter',
+            model: 'lines+markers',
+            x: years,
+            y: billions,
+            line: {color: '#2b6cb0', width:2},
+            marker:{size:6, color:'#2b6cb0'},
+      hovertemplate: 'Year %{x}: <b>%{y:.1f}%</b><extra></extra>',
+        name: 'Real GDP'
+      }],{
         margin: { t: 20, l: 60, r: 20, b: 50 },
         xaxis: { title: 'Year', dtick: 2 },
-        yaxis: { title: 'Growth (YoY, %)', ticksuffix: '%', zeroline: true },
-      };
+        yaxis: { title: 'Billions (2015 US$)', separatethousands: true, rangemode:'tozero'},
+            {displaylogo: false, responsive: true });
+const yoy = [];
+      for (let i = 1; i < data.length; i++) {
+        yoy.push({ year: data[i].year, pct: ((data[i].val / data[i-1].val) - 1) * 100 });
+      }
+      const byYear = new Map(yoy.map(d => [d.year, d.pct]));
+      const want = [2009, 2015, 2016, 2020, 2021, 2022]; // edit as you like
 
-      Plotly.newPlot('uae-gdp', [trace], layout, { displaylogo: false, responsive: true });
+      const parts = [];
+      for (const y of want) {
+        if (byYear.has(y)) {
+          const p = byYear.get(y);
+          const sign = p >= 0 ? 'grew' : 'contracted';
+          parts.push(
+            `<p>In <b>${y}</b>, real GDP ${sign} by <b>${Math.abs(p).toFixed(1)}%</b>.</p>`
+          );
+        }
+      }
+
+      //biggest fall/rise
+      const maxRise = [...yoy].reduce((a,b)=> b.pct > a.pct ? b : a, yoy[0]);
+      const maxDrop = [...yoy].reduce((a,b)=> b.pct < a.pct ? b : a, yoy[0]);
+      parts.push(
+        `<p>Largest annual increase: <b>${maxRise.year}</b> (+<b>${maxRise.pct.toFixed(1)}%</b>).
+         Largest annual decline: <b>${maxDrop.year}</b> (<b>${maxDrop.pct.toFixed(1)}%</b>).</p>`
+      );
+
+      document.getElementById('uae-gdp-notes').innerHTML = parts.join('');
     } catch (e) {
       console.error(e);
-      document.getElementById('uae-gdp').innerHTML =
+      document.getElementById('uae-gdp-level').innerHTML =
         '<div style="color:#b00">Could not load World Bank data.</div>';
     }
   });
