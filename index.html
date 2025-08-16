@@ -145,17 +145,49 @@
       const x = series.map(d => d.year);
       const y = series.map(d => d.val / 1e9);           
 
-      Plotly.newPlot('uae-gdp-level', [{
-        type: 'scatter', mode: 'lines+markers',
-        x, y,
+        const trace = {
+        type: 'scatter', mode: 'lines+markers', x, y,
         line: { color: '#2b6cb0', width: 2 },
         marker: { size: 6, color: '#2b6cb0' },
-        hovertemplate: 'Year %{x}: <b>%{y:.1f} bn</b> (2015 US$)<extra></extra>'
-      }], {
+        hovertemplate: 'Year %{x}: <b>%{y:.1f} bn</b> (2015 US$)<extra></extra>',
+        name: 'Real GDP'
+      };
+
+      // markers
+      const shapes = [
+        // 2009: Global Financial Crisis
+        { type:'line', xref:'x', yref:'paper', x0:2009, x1:2009, y0:0, y1:1,
+          line:{ color:'#c0392b', width:2, dash:'dot' } },
+        // 2015–2016: Oil slump
+        { type:'rect', xref:'x', yref:'paper', x0:2015, x1:2016, y0:0, y1:1,
+          fillcolor:'#f1c40f', opacity:0.12, line:{ width:0 } },
+        // 2020: COVID shock 
+        { type:'line', xref:'x', yref:'paper', x0:2020, x1:2020, y0:0, y1:1,
+          line:{ color:'#e67e22', width:2, dash:'dash' } },
+        // 2021–2022: Rebound 
+        { type:'rect', xref:'x', yref:'paper', x0:2021, x1:2022, y0:0, y1:1,
+          fillcolor:'#2ecc71', opacity:0.10, line:{ width:0 } },
+      ];
+
+      const annotations = [
+        { x:2009, y:1.02, xref:'x', yref:'paper', text:'GFC', showarrow:false,
+          font:{ size:11, color:'#c0392b' } },
+        { x:2015.5, y:1.02, xref:'x', yref:'paper', text:'Oil slump', showarrow:false,
+          font:{ size:11, color:'#7f8c8d' } },
+        { x:2020, y:1.02, xref:'x', yref:'paper', text:'COVID shock', showarrow:false,
+          font:{ size:11, color:'#e67e22' } },
+        { x:2021.5, y:1.02, xref:'x', yref:'paper', text:'Rebound', showarrow:false,
+          font:{ size:11, color:'#2ecc71' } },
+      ];
+
+      const layout = {
         margin: { t: 20, l: 60, r: 20, b: 50 },
         xaxis: { title: 'Year', dtick: 2 },
-        yaxis: { title: 'Billions (2015 US$)', separatethousands: true, rangemode: 'tozero' }
-      }, { displaylogo: false, responsive: true });
+        yaxis: { title: 'Billions (2015 US$)', separatethousands: true, rangemode: 'tozero' },
+        shapes, annotations
+      };
+
+      Plotly.newPlot('uae-gdp-level', [trace], layout, { displaylogo:false, responsive:true });
 
        } catch (e) {
       console.error(e);
