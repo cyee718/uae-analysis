@@ -28,11 +28,12 @@
 <section>
   <h2>UAE Real GDP</h2>
   <div id="uae-gdp-level" style="width:100%;max-width:900px;height:420px;margin:16px auto;"></div>
-  <div id="uae-gdp-notes" style="color:#555;font-size:0.95rem;max-width:900px;margin:8px auto 0;"></div>
+ <p> 
   <p style="color:#666;font-size:0.9rem;margin:8px auto 0;max-width:900px;">
     Source: World Bank (real GDP, constant 2015 US dollars).
   </p>
 </section>
+       
 <!-- GCC Tableau viz -->
     <section>
   <h2>GCC Nationals Visiting the UAE</h2>
@@ -156,27 +157,6 @@
       }, { displaylogo: false, responsive: true });
 
       
-      const yoy = series.slice(1).map((d,i) => ({
-        year: d.year, pct: (d.val / series[i].val - 1) * 100
-      }));
-      const want = [2009, 2015, 2016, 2020, 2021, 2022];
-      const parts = want
-        .map(y => yoy.find(r => r.year === y))
-        .filter(Boolean)
-        .map(r => `<p>In <b>${r.year}</b>, real GDP ${r.pct >= 0 ? 'grew' : 'contracted'} by <b>${Math.abs(r.pct).toFixed(1)}%</b>.</p>`);
-
-      const maxRise = yoy.reduce((a,b)=> b.pct > a.pct ? b : a, yoy[0]);
-      const maxDrop = yoy.reduce((a,b)=> b.pct < a.pct ? b : a, yoy[0]);
-      parts.push(
-        `<p>Largest annual increase: <b>${maxRise.year}</b> (+<b>${maxRise.pct.toFixed(1)}%</b>). 
-        Largest annual decline: <b>${maxDrop.year}</b> (<b>${maxDrop.pct.toFixed(1)}%</b>).</p>`
-      );
-
-      document.getElementById('uae-gdp-notes').innerHTML = parts.join('');
-    } catch (e) {
-      console.error(e);
-      document.getElementById('uae-gdp-level').innerHTML =
-        '<div style="color:#b00">Could not load World Bank data.</div>';
     }
   });
 </script>
