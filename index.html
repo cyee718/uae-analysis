@@ -122,62 +122,54 @@
   </script>
 <script>
   window.addEventListener('DOMContentLoaded', async () => {
-    if (!window.Plotly) { console.error('Plotly not loaded');
+    if (!window.Plotly) { console.error('Plotly not loaded'); return; }
 
-    const url = 'https://api.worldbank.org/v2/country/ARE/indicator/NY.GDP.MKTP.KD.ZG?format=json&per_page=80';
+    // REAL GDP
+    const url = 'https://api.worldbank.org/v2/country/ARE/indicator/NY.GDP.MKTP.KD?format=json&per_page=80';
+
     try {
       const res = await fetch(url);
       const json = await res.json();
       const rows = (json && json[1]) ? json[1] : [];
-      // keep years 2005+ and non null values
-      const data = rows
+
+      // 2005+
+      const series = rows
         .filter(d => d.value !== null && +d.date >= 2005)
-        .map(d => ({ year: +d.date, value: +d.value }))
+        .map(d => ({ year: +d.date, val: +d.value }))  
         .sort((a,b) => a.year - b.year);
 
-      if (!data.length) throw new Error('No GDP data returned');
+      if (!series.length) throw new Error('No GDP data returned');
 
- const years = data.map(d => d.year);
-      const billions = data.map(d => d.val / 1e9);
+      const x = series.map(d => d.year);
+      const y = series.map(d => d.val / 1e9);           
 
       Plotly.newPlot('uae-gdp-level', [{
-        type: 'scatter',
-        mode: 'lines+markers',
-        x: years,
-        y: billions,
+        type: 'scatter', mode: 'lines+markers',
+        x, y,
         line: { color: '#2b6cb0', width: 2 },
         marker: { size: 6, color: '#2b6cb0' },
-        hovertemplate: 'Year %{x}: <b>%{y:.1f} bn</b> (2015 US$)<extra></extra>',
-        name: 'Real GDP'
+        hovertemplate: 'Year %{x}: <b>%{y:.1f} bn</b> (2015 US$)<extra></extra>'
       }], {
         margin: { t: 20, l: 60, r: 20, b: 50 },
         xaxis: { title: 'Year', dtick: 2 },
         yaxis: { title: 'Billions (2015 US$)', separatethousands: true, rangemode: 'tozero' }
       }, { displaylogo: false, responsive: true });
-const yoy = [];
-      for (let i = 1; i < data.length; i++) {
-        yoy.push({ year: data[i].year, pct: ((data[i].val / data[i-1].val) - 1) * 100 });
-      }
-      const byYear = new Map(yoy.map(d => [d.year, d.pct]));
-      const want = [2009, 2015, 2016, 2020, 2021, 2022]; // edit as you like
 
-      const parts = [];
-      for (const y of want) {
-        if (byYear.has(y)) {
-          const p = byYear.get(y);
-          const sign = p >= 0 ? 'grew' : 'contracted';
-          parts.push(
-            `<p>In <b>${y}</b>, real GDP ${sign} by <b>${Math.abs(p).toFixed(1)}%</b>.</p>`
-          );
-        }
-      }
+      
+      const yoy = series.slice(1).map((d,i) => ({
+        year: d.year, pct: (d.val / series[i].val - 1) * 100
+      }));
+      const want = [2009, 2015, 2016, 2020, 2021, 2022];
+      const parts = want
+        .map(y => yoy.find(r => r.year === y))
+        .filter(Boolean)
+        .map(r => `<p>In <b>${r.year}</b>, real GDP ${r.pct >= 0 ? 'grew' : 'contracted'} by <b>${Math.abs(r.pct).toFixed(1)}%</b>.</p>`);
 
-      //biggest fall/rise
-      const maxRise = [...yoy].reduce((a,b)=> b.pct > a.pct ? b : a, yoy[0]);
-      const maxDrop = [...yoy].reduce((a,b)=> b.pct < a.pct ? b : a, yoy[0]);
+      const maxRise = yoy.reduce((a,b)=> b.pct > a.pct ? b : a, yoy[0]);
+      const maxDrop = yoy.reduce((a,b)=> b.pct < a.pct ? b : a, yoy[0]);
       parts.push(
-        `<p>Largest annual increase: <b>${maxRise.year}</b> (+<b>${maxRise.pct.toFixed(1)}%</b>).
-         Largest annual decline: <b>${maxDrop.year}</b> (<b>${maxDrop.pct.toFixed(1)}%</b>).</p>`
+        `<p>Largest annual increase: <b>${maxRise.year}</b> (+<b>${maxRise.pct.toFixed(1)}%</b>). 
+        Largest annual decline: <b>${maxDrop.year}</b> (<b>${maxDrop.pct.toFixed(1)}%</b>).</p>`
       );
 
       document.getElementById('uae-gdp-notes').innerHTML = parts.join('');
