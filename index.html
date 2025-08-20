@@ -201,8 +201,11 @@ the UAE Vision 2030 diversification strategy.
     },
     margin: { t: 60, b: 60, l: 60, r: 260 },
     height: 520,
-    hovermode: "x unified"
-  };
+    hovermode: "closest"
+xaxis: { title: "Year", tickmode: "array",
+         tickvals: yearsSec.filter((_, i) => i % 2 === 0),
+         showspikes: false }
+   };
 
     Plotly.newPlot('gdp-chart', data, layout, { responsive: true });
      })();   
