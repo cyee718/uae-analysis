@@ -140,7 +140,7 @@ the UAE Vision 2030 diversification strategy.
    By contrast, Electricity, Gas & Water grew from 3.6% to nearly 6%, reflecting major infrastructure projects and investment in renewable energy under UAE’s Net Zero 2050 strategy. 
    Meanwhile, healthcare doubled from ~1% to 2.3%, boosted by COVID-19 responses and government spending on medical capacity, showing a gradual shift toward social sector resilience.</p>
 
-  <div id="gdp-chart"style="height:520px;"></div>
+<div id="gdp-chart" style="height:520px;"></div>
 
   <script>
    (function(){
@@ -185,23 +185,24 @@ the UAE Vision 2030 diversification strategy.
     ];
 
     const layout = {
-      title: "UAE GDP by Economic Activity — Shares over time",
-      barmode: "stack",
-      xaxis: { title: "Year",
-    tickmode: "array",
-    tickvals: yearsSec.filter((_, i) => i % 2 === 0) },
-      yaxis: { title: "Share of GDP (%)", range: [0, 100] },
-      legend: { orientation: "v", x: 1.02, xanchor: "left",
-    y: 1,   yanchor: "top",
-    font: { size: 11 } },
-      margin: { t: 60, b: 80, l: 60, r: 30 },
-     x: 1.02, xanchor: "left",
-    y: 1,   yanchor: "top",
-    font: { size: 11 }
-      margin: { t: 60, b: 60, l: 60, r: 260 }, 
-  height: 520,
-  hovermode: "x unified"
-    };
+    title: { text: "UAE GDP by Economic Activity — Shares over time", x: 0.5 },
+    barmode: "stack",
+    xaxis: {
+      title: "Year",
+      tickmode: "array",
+      tickvals: yearsSec.filter((_, i) => i % 2 === 0)
+    },
+    yaxis: { title: "Share of GDP (%)", range: [0, 100] },
+    legend: {
+      orientation: "v",
+      x: 1.02, xanchor: "left",
+      y: 1,    yanchor: "top",
+      font: { size: 11 }
+    },
+    margin: { t: 60, b: 60, l: 60, r: 260 },
+    height: 520,
+    hovermode: "x unified"
+  };
 
     Plotly.newPlot('gdp-chart', data, layout, { responsive: true });
      })();   
