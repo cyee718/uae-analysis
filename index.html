@@ -85,6 +85,7 @@ the UAE Vision 2030 diversification strategy.
 
 </section>
  <section>
+  <h2> Oil vs Non-Oil GDP</h2>
   <style>
     :root{--bg:#f7f8fb;--panel:#fff;--ink:#111827;--muted:#6b7280;--border:#e5e7eb}
     html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;line-height:1.5}
@@ -96,7 +97,6 @@ the UAE Vision 2030 diversification strategy.
   </style>
   
   <div class="wrap">
-    <h1>UAE GDP Shares</h1>
     <p class="muted">Source: UAE STAT</p>
     <div class="card"><div id="oil-gas-chart"></div></div>
   </div>
@@ -116,15 +116,19 @@ the UAE Vision 2030 diversification strategy.
       text: othersPct.map(v => v.toFixed(2) + "%"), textposition: "auto",
       hovertemplate: "%{x}<br>Others: %{y:.2f}%<extra></extra>"
     };
+//new
+    const layoutOil = {
+    title: { text: "UAE GDP Shares — Oil & Gas vs Others", x: 0.5, xanchor: "center" },
+    barmode: "stack",
+    xaxis: { title: "Year" },
+    yaxis: { title: "Share of Total GDP (%)", range: [0, 100] },
+    legend: { orientation: "h", y: -0.2 },
+    margin: { t: 60, b: 80, l: 60, r: 20 }
+  };
 
-    Plotly.newPlot("oil-gas-chart", [traceOil, traceOthers], {
-      barmode: "stack",
-      xaxis: { title: "Year" },
-      yaxis: { title: "Share of Total GDP (%)", range: [0, 100] },
-      margin: { l: 60, r: 20, t: 10, b: 60 },
-      legend: { orientation: "h", x: 0, y: 1.15 }
-    }, { displayModeBar: false, responsive: true });
-  </script>
+    Plotly.newPlot("oil-gas-chart", [traceOil, traceOthers], layoutOil, { displayModeBar: false, responsive: true });
+</script>
+
  </section>
 
  <section>
