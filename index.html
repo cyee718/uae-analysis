@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
       <script src="https://public.tableau.com/javascripts/api/viz_v1.js"></script>
-<script defer src="https://cdn.jsdelivr.net/npm/plotly.js-dist-min@2.27.0/plotly.min.js"></script>
+ <script src="https://cdn.jsdelivr.net/npm/plotly.js-dist-min@2.30.0/plotly.min.js"></script>
 <style>
  :root{
     --bg:#ffffff;      
@@ -85,7 +85,6 @@ the UAE Vision 2030 diversification strategy.
 </section>
  <section>
   <title>UAE GDP Shares – Oil &amp; Gas GDP vs Others</title>
-  <script src="https://cdn.jsdelivr.net/npm/plotly.js-dist-min@2.30.0/plotly.min.js"></script>
   <style>
     :root{--bg:#f7f8fb;--panel:#fff;--ink:#111827;--muted:#6b7280;--border:#e5e7eb}
     html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;line-height:1.5}
@@ -100,7 +99,7 @@ the UAE Vision 2030 diversification strategy.
   <div class="wrap">
     <h1>UAE GDP Shares</h1>
     <p class="muted">Oil &amp; Gas GDP = ISIC “B” (Mining &amp; Quarrying incl. crude oil &amp; natural gas). Others = Total − ISIC B. Percentages to <strong>2&nbsp;dp</strong>.</p>
-    <div class="card"><div id="chart"></div></div>
+    <div class="card"><div id="oil-gas-chart"></div></div>
   </div>
 
   <script>
@@ -119,7 +118,7 @@ the UAE Vision 2030 diversification strategy.
       hovertemplate: "%{x}<br>Others: %{y:.2f}%<extra></extra>"
     };
 
-    Plotly.newPlot("chart", [traceOil, traceOthers], {
+    Plotly.newPlot("oil-gas-chart", [traceOil, traceOthers], {
       barmode: "stack",
       xaxis: { title: "Year" },
       yaxis: { title: "Share of Total GDP (%)", range: [0, 100] },
@@ -141,7 +140,6 @@ the UAE Vision 2030 diversification strategy.
  <head>
   <meta charset="UTF-8" />
   <title>UAE GDP by Sector — Shares Over Time</title>
-  <script src="https://cdn.plot.ly/plotly-2.4.1.min.js"></script>
   <style>
     html, body { height: 100%; margin: 0; }
     #gdp-chart { width: 100%; height: 100%; }
