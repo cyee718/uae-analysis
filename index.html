@@ -49,7 +49,7 @@
      
           
 <header>
-        <h1>UAE Visitors Count Analysis</h1>
+        <h1>UAE's Performance Analysis</h1>
       </header>
   
 <!-- Section 1: Intro + Excel chart -->
@@ -83,6 +83,53 @@ the UAE Vision 2030 diversification strategy.
 </p>
 
 </section>
+ <section>
+  <title>UAE GDP Shares – Oil &amp; Gas GDP vs Others</title>
+  <script src="https://cdn.jsdelivr.net/npm/plotly.js-dist-min@2.30.0/plotly.min.js"></script>
+  <style>
+    :root{--bg:#f7f8fb;--panel:#fff;--ink:#111827;--muted:#6b7280;--border:#e5e7eb}
+    html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;line-height:1.5}
+    .wrap{max-width:1000px;margin:28px auto;padding:0 16px}
+    .card{background:var(--panel);border:1px solid var(--border);border-radius:16px;padding:16px;box-shadow:0 1px 2px rgba(0,0,0,.04)}
+    h1{font-size:clamp(20px,4vw,28px);margin:0 0 8px}
+    .muted{color:var(--muted)}
+    #chart{height:480px}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>UAE GDP Shares</h1>
+    <p class="muted">Oil &amp; Gas GDP = ISIC “B” (Mining &amp; Quarrying incl. crude oil &amp; natural gas). Others = Total − ISIC B. Percentages to <strong>2&nbsp;dp</strong>.</p>
+    <div class="card"><div id="chart"></div></div>
+  </div>
+
+  <script>
+    const years = [2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020,2021,2022,2023,2024];
+    const oilPct = [28.95,36.6,36.82,34.72,32.00,20.20,18.92,18.66,30.75,29.01,16.89,23.60,29.20,23.47,22.16];
+    const othersPct = [71.05,63.40,63.18,65.28,68.00,79.80,81.08,81.34,69.25,70.99,83.11,76.40,70.80,76.53,77.84];
+
+    const traceOil = {
+      x: years, y: oilPct, name: "Oil & Gas GDP", type: "bar",
+      text: oilPct.map(v => v.toFixed(2) + "%"), textposition: "auto",
+      hovertemplate: "%{x}<br>Oil & Gas: %{y:.2f}%<extra></extra>"
+    };
+    const traceOthers = {
+      x: years, y: othersPct, name: "Others", type: "bar",
+      text: othersPct.map(v => v.toFixed(2) + "%"), textposition: "auto",
+      hovertemplate: "%{x}<br>Others: %{y:.2f}%<extra></extra>"
+    };
+
+    Plotly.newPlot("chart", [traceOil, traceOthers], {
+      barmode: "stack",
+      xaxis: { title: "Year" },
+      yaxis: { title: "Share of Total GDP (%)", range: [0, 100] },
+      margin: { l: 60, r: 20, t: 10, b: 60 },
+      legend: { orientation: "h", x: 0, y: 1.15 }
+    }, { displayModeBar: false, responsive: true });
+  </script>
+</body>
+ </section>
+ </section>
  <section>
   <h2>National sector contribution to GDP</h2>
   <p>From 2010 to 2024, Wholesale & Retail Trade remained the largest contributor to UAE GDP at around 16–18%, 
