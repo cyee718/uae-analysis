@@ -57,7 +57,15 @@
   }
   .labour-grid img { width: 100%; height: auto; display: block; border-radius: 8px; }
   .labour-grid figcaption { font-size: 0.9rem; color: #444; margin-top: 6px; }
+
+ .zoomable { cursor: zoom-in; }
+  #lightbox {
+    position: fixed; inset: 0; display: none; place-items: center;
+    background: rgba(0,0,0,.7); z-index: 9999;
+  }
+  #lightbox img { max-width: 95vw; max-height: 95vh; border-radius: 8px; }
   </style>
+ <div id="lightbox"><img></div>
       </head>
       <body>
          <div class="container">
@@ -252,18 +260,30 @@ the UAE Vision 2030 diversification strategy.
  </section>
           
  <section>
+  <script>
+     const lb = document.getElementById('lightbox');
+  const lbImg = lb.querySelector('img');
+
+  document.querySelectorAll('img.zoomable').forEach(img => {
+    img.addEventListener('click', () => {
+      lbImg.src = img.src;
+      lb.style.display = 'grid';
+    });
+  });
+  lb.addEventListener('click', () => lb.style.display = 'none');
+  </script>
   <h1>UAE Labour Participation (FCSC, 2019)</h1>
   <div class="labour-grid">
     <figure>
-      <img src="lfpr_edu_bar_2019.png" alt="LFPR by education and nationality">
+      <img class="zoomable" src="lfpr_edu_bar_2019.png" alt="LFPR by education and nationality">
       <figcaption>By Education & Nationality</figcaption>
     </figure>
     <figure>
-      <img src="lfpr_gap_2019.png" alt="Gap in LFPR by education and gender">
+      <img class="zoomable" src="lfpr_gap_2019.png" alt="Gap in LFPR by education and gender">
       <figcaption>Gap (Non‑Emirati − Emirati)</figcaption>
     </figure>
     <figure>
-      <img src="gender_plot.png" alt="LFPR by gender and nationality">
+      <img class="zoomable" src="gender_plot.png" alt="LFPR by gender and nationality">
       <figcaption>By Gender & Nationality</figcaption>
     </figure>
   </div>
