@@ -498,7 +498,7 @@ async function wdi(country, indicator){
     .uae-timeline h2{font-size:1.6rem;margin: 0 0 18px;text-align:center}
    
 .timeline{display:flex;align-items:flex-start;
-  position:relative; gap: 20px; list-style:none; padding:56px 0 0;margin:0; overflow-x: auto}
+  position:relative; gap: 20px; list-style:none; padding:64px 8px 8px;margin:0; overflow-x: auto}
 
   .timeline::-webkit-scrollbar{ height:8px }
     .timeline::-webkit-scrollbar-thumb{ background:#d1d5db; border-radius:8px }
@@ -507,8 +507,9 @@ async function wdi(country, indicator){
      position:relative; left:0; right:0; top:32px; height:3px; background:var(--rail)
     }
   .timeline-item{
-      position:relative; flex:0 0 160px; 
-      text-align:center
+      position:relative; flex:0 0 180px; 
+   padding-top:24px;
+      text-align:center;
     }
 
    .dot{
@@ -518,13 +519,15 @@ async function wdi(country, indicator){
       position:absolute; top:23px; left:50%; transform:translateX(-50%);
     }
 
-    .year{font-weight:700; margin-top:0}
-    .title{margin:4px 0 6px;font-weight:600}
+    .year{font-weight:800; margin-top:0}
+    .title{margin:0 0 6px;font-weight:700; line-height:1.25}
     .desc{margin:0;color:#374151;font-size:.9rem;line-height:1.4}
 
+       .title, .desc{word-break:keep-all}
+
        @media (max-width:600px){
-      .uae-timeline h2{ font-size:1.35rem }
-      .timeline-item{ flex-basis:150px }
+      .timeline-item{ flex-basis:160px }
+        .year{font-size:1rem}
       .title{ font-size:.95rem }
       .desc{ font-size:.85rem }
     }
