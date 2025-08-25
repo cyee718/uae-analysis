@@ -42,6 +42,21 @@
   a{ color:var(--accent); text-decoration:none; }
   a:hover{ text-decoration:underline; }
   hr{ border:none; height:1px; background:var(--border); margin:24px 0; }
+ 
+ .labour-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 16px;
+  }
+  .labour-grid figure { 
+    margin: 0; 
+    padding: 12px; 
+    background: #fff; 
+    border-radius: 12px; 
+    box-shadow: 0 2px 12px rgba(0,0,0,.06); 
+  }
+  .labour-grid img { width: 100%; height: auto; display: block; border-radius: 8px; }
+  .labour-grid figcaption { font-size: 0.9rem; color: #444; margin-top: 6px; }
   </style>
       </head>
       <body>
