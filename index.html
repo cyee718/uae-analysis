@@ -297,6 +297,7 @@ The country’s <a href="https://usuaebusiness.org/wp-content/uploads/2019/01/20
   </p>
   
 <script>
+ window.addEventListener('DOMContentLoaded', async () => {
 async function wdiSeries(countryCode, indicator){
   const url = `https://api.worldbank.org/v2/country/${countryCode}/indicator/${indicator}?format=json&per_page=80`;
   const res = await fetch(url);
@@ -307,8 +308,6 @@ async function wdiSeries(countryCode, indicator){
     .map(d => ({year: +d.date, val: +d.value}))
     .sort((a,b) => a.year - b.year);
 }
-
-(async () => {
   try {
     const life = await wdiSeries('ARE', 'SP.DYN.LE00.IN');
     const imr  = await wdiSeries('ARE', 'SP.DYN.IMRT.IN');
@@ -329,15 +328,13 @@ async function wdiSeries(countryCode, indicator){
       yaxis:  { title: 'Life expectancy (years)' },
       yaxis2: { title: 'Infant mortality (per 1,000)', overlaying: 'y', side: 'right' },
       legend: { orientation: 'h', y: -0.25 }
-    };
-
-    Plotly.newPlot('health-live', [t1, t2], layout, {responsive:true});
+    }, {responsive:true});
   } catch (e) {
     console.error(e);
     document.getElementById('health-live').innerHTML =
       '<div style="color:#b00;text-align:center">Could not load live data from the World Bank API.</div>';
   }
-})();
+});
 </script>
 
   <h3>UAE Labour Participation (FCSC, 2019)</h3>
@@ -443,6 +440,7 @@ and its success in positioning itself as a **logistics and services hub** for th
   </p>
 
 <script>
+ window.addEventListener('DOMContentLoaded', async () => {
 async function wdi(country, indicator){
   const url = `https://api.worldbank.org/v2/country/${country}/indicator/${indicator}?format=json&per_page=120`;
   const res = await fetch(url);
@@ -454,7 +452,6 @@ async function wdi(country, indicator){
     .sort((a,b) => a.year - b.year);
 }
 
-(async () => {
   try {
     const series = await wdi('ARE','NE.TRD.GNFS.ZS');  // Trade (% of GDP)
     const x = series.map(d => d.year);
@@ -468,30 +465,23 @@ async function wdi(country, indicator){
       marker: { size: 5 },
       name: 'Trade (% of GDP)',
       hovertemplate: '%{x}: <b>%{y:.1f}%</b><extra></extra>'
-    };
-
-    const lastX = x[x.length-1], lastY = y[y.length-1];
-
-    const layout = {
+    }],{
+    
       title: { text: 'UAE Trade (% of GDP), 2001–2023', x: 0.5 },
       margin: { t: 50, l: 60, r: 30, b: 50 },
       xaxis: { title: 'Year', dtick: 2, tickformat: 'd' },
       yaxis: { title: 'Percent of GDP', rangemode: 'tozero' },
-      annotations: [{
-        x: lastX, y: lastY, xanchor: 'left', yanchor: 'middle',
-        ax: 16, ay: 0, arrowcolor: '#666', arrowsize: 3,
-        text: ` ${lastY.toFixed(1)}% (${lastX})`, showarrow: true, bgcolor: 'rgba(255,255,255,.8)'
-      }],
-      showlegend: false
-    };
-
-    Plotly.newPlot('uae-trade-gdp', [trace], layout, {responsive:true});
-  } catch (e) {
+        showlegend:false
+    }, {responsive:true});
+  } catch(e){
     console.error(e);
     document.getElementById('uae-trade-gdp').innerHTML =
       '<div style="color:#b00;text-align:center">Could not load World Bank data.</div>';
   }
-})();
+});
+      }],
+      showlegend: false
+    };
 </script>
 </section>
 <!-- GCC Tableau viz -->
