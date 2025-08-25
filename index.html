@@ -122,35 +122,7 @@
       }], {
         title: { text: 'UAE Real GDP (constant 2015 US$)', x: 0.5 },
         xaxis: { title: 'Year', tickformat: 'd' },
-        yaxis: { title: 'US dollars (constant 2015)', separatethousands: tr
-
-
-window.addEventListener('DOMContentLoaded', async () => {
-  const el = document.getElementById('uae-gdp-level');
-  try {
-    const url = 'https://api.worldbank.org/v2/country/ARE/indicator/NY.GDP.MKTP.KD?format=json&per_page=80';
-    const res = await fetch(url);
-    const json = await res.json();
-    const rows = (json && json[1]) ? json[1] : [];
-
-    const series = rows
-      .filter(d => d.value !== null)
-      .map(d => ({ year: +d.date, val: +d.value }))  
-      .sort((a, b) => a.year - b.year);
-
-    const x = series.map(d => d.year);
-    const y = series.map(d => d.val);
-
-    Plotly.newPlot('uae-gdp-level', [{
-      x, y,
-      type: 'scatter',
-      mode: 'lines+markers',
-      name: 'Real GDP (constant 2015 US$)',
-      hovertemplate: '%{x}: <b>%{y:,.0f}</b><extra></extra>'
-    }], {
-      title: { text: 'UAE Real GDP (constant 2015 US$)', x: 0.5 },
-      xaxis: { title: 'Year', tickformat: 'd' },
-      yaxis: { title: 'US dollars (constant 2015)', separatethousands: true },
+        yaxis: { title: 'US dollars (constant 2015)', separatethousands: true
       margin: { t: 50, l: 70, r: 20, b: 50 }
     }, { responsive: true });
   } catch (e) {
