@@ -491,21 +491,44 @@ async function wdi(country, indicator){
 
 <section class="uae-timeline" aria-label="UAE Sustainability and Future Economy Timeline">
   <style>
-    .uae-timeline{font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Arial,sans-serif;padding:32px;max-width:900px;margin:auto}
-    .uae-timeline h2{font-size:1.8rem;margin-bottom:20px;text-align:center}
-.timeline{display:flex;justify-content:space-between;align-items:flex-start;
-  position:relative;list-style:none;padding:0;margin:0}
+    .uae-timeline{--rail:#e5e7eb; --ink:#111827; --muted:#374151; --accent:#2563eb;
+     font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Arial,sans-serif;
+                  padding:24px;max-width:1100px;margin:auto, color:var(--ink)
+                 }
+    .uae-timeline h2{font-size:1.6rem;margin: 0 0 18px;text-align:center}
+   
+.timeline{display:flex;align-items:flex-start;
+  position:relative; gap: 20px; list-style:none; padding:56px 0 0;margin:0; overflow-x: auto}
 .timeline::before{content:"";position:absolute;top:30px;left:0;right:0;
-  height:3px;background:#e5e7eb}
 
-   .timeline-item{position:relative;text-align:center;width:16%;z-index:1}
+  .timeline::-webkit-scrollbar{ height:8px }
+    .timeline::-webkit-scrollbar-thumb{ background:#d1d5db; border-radius:8px }
 
-    .timeline-item:last-child{margin-bottom:0}
-    .dot{width:18px;height:18px;border-radius:50%;margin:auto}
+  .timeline::before{
+      content:""; position:absolute; left:0; right:0; top:32px; height:3px; background:var(--rail)
+    }
+  .timeline-item{
+      position:relative; flex:0 0 160px; /* min width for each card */
+      text-align:center
+    }
 
-    .year{font-weight:700;font-size:1.1rem;margin-bottom:6px}
-    .title{font-weight:600;color:#111827;margin:0 0 4px}
+   .dot{
+      width:18px; height:18px; border-radius:50%;
+      background:var(--accent);
+      border:3px solid #fff; box-shadow:0 0 0 2px var(--accent);
+      position:absolute; top:23px; left:50%; transform:translateX(-50%);
+    }
+
+    .year{font-weight:700; margin-top:0;margin-top:0}
+    .title{margin:4px 0 6px;font-weight:600}
     .desc{margin:0;color:#374151;font-size:.95rem;line-height:1.4}
+
+       @media (max-width:600px){
+      .uae-timeline-h h2{ font-size:1.35rem }
+      .timeline-item{ flex-basis:150px }
+      .title{ font-size:.95rem }
+      .desc{ font-size:.85rem }
+    }
   </style>
 
   <h2>UAE – Path to 2050</h2>
