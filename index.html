@@ -499,16 +499,15 @@ async function wdi(country, indicator){
    
 .timeline{display:flex;align-items:flex-start;
   position:relative; gap: 20px; list-style:none; padding:56px 0 0;margin:0; overflow-x: auto}
-.timeline::before{content:"";position:absolute;top:30px;left:0;right:0;
 
   .timeline::-webkit-scrollbar{ height:8px }
     .timeline::-webkit-scrollbar-thumb{ background:#d1d5db; border-radius:8px }
 
   .timeline::before{
-      content:""; position:absolute; left:0; right:0; top:32px; height:3px; background:var(--rail)
+     position:relative; left:0; right:0; top:32px; height:3px; background:var(--rail)
     }
   .timeline-item{
-      position:relative; flex:0 0 160px; /* min width for each card */
+      position:relative; flex:0 0 160px; 
       text-align:center
     }
 
@@ -519,9 +518,9 @@ async function wdi(country, indicator){
       position:absolute; top:23px; left:50%; transform:translateX(-50%);
     }
 
-    .year{font-weight:700; margin-top:0;margin-top:0}
+    .year{font-weight:700; margin-top:0}
     .title{margin:4px 0 6px;font-weight:600}
-    .desc{margin:0;color:#374151;font-size:.95rem;line-height:1.4}
+    .desc{margin:0;color:#374151;font-size:.9rem;line-height:1.4}
 
        @media (max-width:600px){
       .uae-timeline h2{ font-size:1.35rem }
@@ -537,37 +536,37 @@ async function wdi(country, indicator){
       <span class="dot"></span>
       <div class="year">2010s</div>
       <p class="title">Foundations of Clean Energy</p>
-      <p class="desc">Masdar launched, Mohammed bin Rashid Solar Park initiated, setting the stage for large-scale renewable deployment.</p>
+      <p class="desc">Masdar launched, MBR Solar Park initiated.</p>
     </li>
     <li class="timeline-item">
       <span class="dot"></span>
       <div class="year">2020</div>
-      <p class="title">Expo 2020 & Sustainability Push</p>
-      <p class="desc">UAE showcased sustainability themes, invested in digital infrastructure, and positioned itself as a hub for innovation.</p>
+      <p class="title">Expo 2020/p>
+      <p class="desc">Expo highlighted sustainability and digital growth.</p>
     </li>
     <li class="timeline-item">
       <span class="dot"></span>
       <div class="year">2025</div>
       <p class="title">Solar & Hydrogen Scale-up</p>
-      <p class="desc">Over 3.6 GW of solar capacity online; pilot hydrogen projects launched with National Strategy milestones (1.4 Mtpa by 2031).</p>
+      <p class="desc">3.6 GW solar online; pilot hydrogen projects begin.</p>
     </li>
     <li class="timeline-item">
       <span class="dot"></span>
       <div class="year">2030</div>
-      <p class="title">Net Zero Milestones</p>
-      <p class="desc">30% renewables in energy mix; Solar Park capacity reaches 7.26 GW; digital economy to reach ~20% of GDP.</p>
+      <p class="title">Net Zero</p>
+      <p class="desc">30% renewables; Solar Park 7.26 GW; digital GDP ~20%.</p>
     </li>
     <li class="timeline-item">
       <span class="dot"></span>
       <div class="year">2040</div>
-      <p class="title">Hydrogen Expansion</p>
-      <p class="desc">Hydrogen production ramps to 7.5 Mtpa; UAE positioned as a global green hydrogen exporter.</p>
+      <p class="title">Hydrogen Hub</p>
+      <p class="desc">Hydrogen output 7.5 Mtpa; UAE a global exporter.</p>
     </li>
     <li class="timeline-item">
       <span class="dot"></span>
       <div class="year">2050</div>
-      <p class="title">Net Zero Achievement</p>
-      <p class="desc">Full decarbonisation across energy, transport, industry, and smart city infrastructure. UAE meets its Net Zero 2050 target.</p>
+      <p class="title">Net Zero</p>
+      <p class="desc">Full economy-wide decarbonisation achieved.</p>
     </li>
   </ul>
 </section>
