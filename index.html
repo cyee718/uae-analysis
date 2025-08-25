@@ -275,7 +275,63 @@ the UAE Vision 2030 diversification strategy.
   });
   lb.addEventListener('click', () => lb.style.display = 'none');
   </script>
-  <h1>UAE Labour Participation (FCSC, 2019)</h1>
+  
+  <h1>Social Development</h1>
+  <h3>Healthcare and Social Development (live)</h3>
+  <p>
+The following graph demonstrates the UAE’s progress in healthcare outcomes, 
+with life expectancy steadily increasing and infant mortality declining over time. </p>
+  <br>
+  <div id="health-live" style="height:460px;max-width:900px;margin:0 auto"></div>
+  <p class="muted" style="text-align:center">
+    Source: World Bank WDI (live via API). Indicators: Life expectancy (SP.DYN.LE00.IN), Infant mortality (SP.DYN.IMRT.IN).
+  </p>
+  
+<script>
+async function wdiSeries(countryCode, indicator){
+  const url = `https://api.worldbank.org/v2/country/${countryCode}/indicator/${indicator}?format=json&per_page=80`;
+  const res = await fetch(url);
+  const json = await res.json();
+  const rows = (json && json[1]) ? json[1] : [];
+  return rows
+    .filter(d => d.value !== null)
+    .map(d => ({year: +d.date, val: +d.value}))
+    .sort((a,b) => a.year - b.year);
+}
+
+(async () => {
+  try {
+    const life = await wdiSeries('ARE', 'SP.DYN.LE00.IN');
+    const imr  = await wdiSeries('ARE', 'SP.DYN.IMRT.IN');
+
+    const years = life.map(d => d.year).filter(y => imr.some(e => e.year === y));
+    const lifeY = years.map(y => life.find(d => d.year === y).val);
+    const imrY  = years.map(y => imr.find(d => d.year === y).val);
+
+    const t1 = { x: years, y: lifeY, name: 'Life expectancy (years)',
+                 type: 'scatter', mode: 'lines+markers' };
+    const t2 = { x: years, y: imrY,  name: 'Infant mortality (per 1,000)',
+                 type: 'scatter', mode: 'lines+markers', yaxis: 'y2' };
+
+    const layout = {
+      title: { text: 'UAE: Life Expectancy vs Infant Mortality (live)', x: 0.5 },
+      margin: { t: 50, l: 60, r: 60, b: 50 },
+      xaxis: { title: 'Year', dtick: 2 },
+      yaxis:  { title: 'Life expectancy (years)' },
+      yaxis2: { title: 'Infant mortality (per 1,000)', overlaying: 'y', side: 'right' },
+      legend: { orientation: 'h', y: -0.25 }
+    };
+
+    Plotly.newPlot('health-live', [t1, t2], layout, {responsive:true});
+  } catch (e) {
+    console.error(e);
+    document.getElementById('health-live').innerHTML =
+      '<div style="color:#b00;text-align:center">Could not load live data from the World Bank API.</div>';
+  }
+})();
+</script>
+
+  <h3>UAE Labour Participation (FCSC, 2019)</h3>
   <div class="labour-grid">
     <figure>
      <a href="lfpr_edu_bar_2019.png" data-lightbox="labour" data-title="By Education & Nationality">
