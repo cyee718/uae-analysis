@@ -417,47 +417,83 @@ Yet gaps remain, especially among Emiratis with only primary or below education,
 
 <section>
   <h2>Trade and Investment</h2>
-  <p>
-    Trade and foreign investment are central to the UAE’s diversification strategy. 
-    Total trade consistently exceeds <strong>150% of GDP</strong>, among the highest globally, 
-    reflecting its role as a logistics and re-export hub. 
-    The country attracts substantial foreign direct investment (FDI), 
-    reaching $23 billion in 2022, 
-    with inflows concentrated in real estate, finance, and renewable energy. 
-    New <a href="https://u.ae/en/about-the-uae/economy/trade-agreements" target="_blank">Comprehensive Economic Partnership Agreements (CEPAs)</a> 
-    with India, Israel, and other partners further strengthened the UAE’s status as a global investment hub. 
+ <p>
+The UAE has consistently ranked among the world’s most **trade-open economies**,  
+with trade flows (exports plus imports) regularly exceeding **150% of GDP** since the early 2000s.  
+</p>
+
+<p>
+The ratio rose sharply in the early 2010s, reflecting **booming oil exports** and the country’s role  
+as a global **re-export hub**.  
+</p>
+
+<p>
+After a dip during the **2015–2016 oil price slump** and again in **2020 amid COVID-19 disruptions**,  
+trade openness rebounded strongly, surpassing **200% of GDP by 2023**.  
+</p>
+
+<p>
+This trajectory highlights both the UAE’s structural **reliance on international trade**  
+and its success in positioning itself as a **logistics and services hub** for the wider Middle East, Africa and Asia.  
+</p>
+
+<div id="uae-trade-gdp" style="height:460px;max-width:900px;margin:0 auto"></div>
+  <p class="muted" style="text-align:center">
+    Source: World Bank WDI (indicator <code>NE.TRD.GNFS.ZS</code>), live via API.
   </p>
 
-  <div id="trade-chart" style="height:420px;max-width:850px;margin:0 auto"></div>
-  <p class="muted">Source: World Bank (Trade as % of GDP), UNCTAD (FDI inflows).</p>
+<script>
+async function wdi(country, indicator){
+  const url = `https://api.worldbank.org/v2/country/${country}/indicator/${indicator}?format=json&per_page=120`;
+  const res = await fetch(url);
+  const json = await res.json();
+  const rows = (json && json[1]) ? json[1] : [];
+  return rows
+    .filter(d => d.value !== null && +d.date >= 2001 && +d.date <= 2023)
+    .map(d => ({year:+d.date, val:+d.value}))
+    .sort((a,b) => a.year - b.year);
+}
 
-  <script>
-    const yearsTrade = [2010, 2012, 2014, 2016, 2018, 2020, 2022];
-    const tradePctGDP = [160, 170, 168, 158, 165, 145, 155]; 
-    const fdiInflows = [8, 10, 12, 14, 15, 20, 23]; // USD billions
+(async () => {
+  try {
+    const series = await wdi('ARE','NE.TRD.GNFS.ZS');  // Trade (% of GDP)
+    const x = series.map(d => d.year);
+    const y = series.map(d => d.val);
 
-    const traceTrade = {
-      x: yearsTrade, y: tradePctGDP, type:'scatter', mode:'lines+markers',
-      name: 'Trade (% of GDP)', line: {color:'#2b6cb0'}, yaxis: 'y1'
+    const trace = {
+      x, y,
+      type: 'scatter',
+      mode: 'lines+markers',
+      line: { width: 2 },
+      marker: { size: 5 },
+      name: 'Trade (% of GDP)',
+      hovertemplate: '%{x}: <b>%{y:.1f}%</b><extra></extra>'
     };
-    const traceFDI = {
-      x: yearsTrade, y: fdiInflows, type:'bar',
-      name: 'FDI inflows (US$ bn)', yaxis:'y2', marker:{color:'#d4af37'}
+
+    const lastX = x[x.length-1], lastY = y[y.length-1];
+
+    const layout = {
+      title: { text: 'UAE Trade (% of GDP), 2001–2023', x: 0.5 },
+      margin: { t: 50, l: 60, r: 30, b: 50 },
+      xaxis: { title: 'Year', dtick: 2, tickformat: 'd' },
+      yaxis: { title: 'Percent of GDP', rangemode: 'tozero' },
+      annotations: [{
+        x: lastX, y: lastY, xanchor: 'left', yanchor: 'middle',
+        ax: 16, ay: 0, arrowcolor: '#666', arrowsize: 3,
+        text: ` ${lastY.toFixed(1)}% (${lastX})`, showarrow: true, bgcolor: 'rgba(255,255,255,.8)'
+      }],
+      showlegend: false
     };
 
-    const layoutTrade = {
-      title: { text:'UAE Trade Openness and FDI Inflows', x:0.5 },
-      xaxis: { title: 'Year' },
-      yaxis: { title: 'Trade (% of GDP)', range:[120,180] },
-      yaxis2: { title: 'FDI Inflows (US$ billions)', overlaying:'y', side:'right' },
-      legend: { orientation:'h', y:-0.3 },
-      margin:{t:50, b:60, l:60, r:60}
-    };
-
-    Plotly.newPlot('trade-chart', [traceFDI, traceTrade], layoutTrade, {responsive:true});
-  </script>
+    Plotly.newPlot('uae-trade-gdp', [trace], layout, {responsive:true});
+  } catch (e) {
+    console.error(e);
+    document.getElementById('uae-trade-gdp').innerHTML =
+      '<div style="color:#b00;text-align:center">Could not load World Bank data.</div>';
+  }
+})();
+</script>
 </section>
-          
 <!-- GCC Tableau viz -->
     <section>
   <h2>GCC Nationals Visiting the UAE</h2>
