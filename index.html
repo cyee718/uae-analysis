@@ -284,8 +284,9 @@ with life expectancy steadily increasing and infant mortality declining over tim
   
  <p>Since the 1970s, a rapid expansion of hospitals and the introduction of <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10915079/?utm_source=chatgpt.com" target="_blank">mandatory international accreditation</a> have improved quality and access, sharply reducing maternal and infant deaths. 
 More recently, reforms have targeted <a href="https://uniatf.who.int/docs/librariesprovider22/default-document-library/uae-phc-costing-report.pdf?sfvrsn=69801d6f_3&utm_source=chatgpt.com" target="_blank">non-communicable diseases (NCDs)</a>, which account for over 75% of the disease burden, through stronger primary healthcare and prevention campaigns. 
-The country’s <a href="https://usuaebusiness.org/wp-content/uploads/2019/01/2021-U.A.E.-Healthcare-Report.pdf?utm_source=chatgpt.com" target="_blank">swift COVID-19 response</a> further underscored its resilience, with investments in testing, vaccination, and local medical production. 
-Together, these efforts explain why life expectancy has climbed above 82 years and infant mortality dropped to around 4 per 1,000 live births, reflecting how policy and infrastructure directly translated into better health outcomes.
+The country’s <a href="https://usuaebusiness.org/wp-content/uploads/2019/01/2021-U.A.E.-Healthcare-Report.pdf?utm_source=chatgpt.com" target="_blank">swift COVID-19 response</a> further underscored its resilience, with investments in testing, vaccination, and local medical production. </p> 
+
+ <p>Together, these efforts explain why life expectancy has climbed above 82 years and infant mortality dropped to around 4 per 1,000 live births, reflecting how policy and infrastructure directly translated into better health outcomes.
 </p>
   <br>
   <div id="health-live" style="height:460px;max-width:900px;margin:0 auto"></div>
@@ -376,6 +377,41 @@ This aligns with national strategies that promote women’s education and profes
 Yet gaps remain, especially among Emiratis with only primary or below education, showing how limited schooling continues to restrict opportunities and reinforcing the importance of ongoing investment in human capital.
 </p>
 
+ 
+  <h3>Human Development Index (HDI)</h3>
+  <div id="hdi-chart" style="height:420px; max-width:800px; margin:0 auto;"></div>
+  <p class="muted">Source: UNDP Human Development Reports.</p>
+
+  <p>
+    The UAE’s HDI rose from ~0.70 in 1990 to 0.890 in 2022, placing the country among the global top 30 thanks to gains in life expectancy, education, and income per capita. 
+    <a href="https://hdr.undp.org/data-center/human-development-index#/indicies/HDI?utm_source=chatgpt.com" target="_blank">UNDP data center</a>
+    and country insights rank it 29th globally in 2022. :contentReference[oaicite:12]{index=12}
+  </p>
+
+  <script>
+    const yearsHDI = [1990, 2000, 2010, 2020, 2022];
+    const hdiVals = [0.70, 0.77, 0.82, 0.89, 0.890];
+
+    const traceHDI = {
+      x: yearsHDI,
+      y: hdiVals,
+      type: 'scatter',
+      mode: 'lines+markers',
+      line: { color: '#27ae60' },
+      name: 'UAE HDI'
+    };
+
+    const layoutHDI = {
+      title: { text: 'UAE Human Development Index (1990–2022)', x: 0.5 },
+      xaxis: { title: 'Year' },
+      yaxis: { title: 'HDI Value', range: [0.65, 1] },
+      margin: { t: 50, b: 60, l: 60, r: 20 }
+    };
+
+    Plotly.newPlot('hdi-chart', [traceHDI], layoutHDI, { responsive: true });
+  </script>
+
+
 
 </section>
           
@@ -436,7 +472,7 @@ Yet gaps remain, especially among Emiratis with only primary or below education,
 
 
 <div class="wrap">
-    <h1>UAE Golden Visa — Approvals by Year (Official)</h1>
+    <h2>UAE Golden Visa — Approvals by Year (Official)</h2>
     <p class="note">Only years with publicly reported official counts are shown. Source noted below.</p>
     <div id="chart"></div>
     <p class="note" style="margin-top:8px">Source: UAE Emirates News Agency (WAM) citing GDRFA Dubai — 79,617 approvals in 2022; 47,150 in 2021. 2023 figures are widely reported as 158,000 (Gulf News citing GDRFA) but are not included here to keep to official releases only.</p>
