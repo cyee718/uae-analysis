@@ -284,9 +284,9 @@ the UAE Vision 2030 diversification strategy.
 The following graph demonstrates the UAE’s progress in healthcare outcomes, 
 with life expectancy steadily increasing and infant mortality declining over time. </p>
   
- <p>Since the 1970s, a rapid expansion of hospitals and the introduction of <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10915079/?utm_source=chatgpt.com" target="_blank">mandatory international accreditation</a> have improved quality and access, sharply reducing maternal and infant deaths. 
-More recently, reforms have targeted <a href="https://uniatf.who.int/docs/librariesprovider22/default-document-library/uae-phc-costing-report.pdf?sfvrsn=69801d6f_3&utm_source=chatgpt.com" target="_blank">non-communicable diseases (NCDs)</a>, which account for over 75% of the disease burden, through stronger primary healthcare and prevention campaigns. 
-The country’s <a href="https://usuaebusiness.org/wp-content/uploads/2019/01/2021-U.A.E.-Healthcare-Report.pdf?utm_source=chatgpt.com" target="_blank">swift COVID-19 response</a> further underscored its resilience, with investments in testing, vaccination, and local medical production. </p> 
+ <p>Since the 1970s, a rapid expansion of hospitals and the introduction of <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10915079/?" target="_blank">mandatory international accreditation</a> have improved quality and access, sharply reducing maternal and infant deaths. 
+More recently, reforms have targeted <a href="https://uniatf.who.int/docs/librariesprovider22/default-document-library/uae-phc-costing-report.pdf?sfvrsn=69801d6f_3&" target="_blank">non-communicable diseases (NCDs)</a>, which account for over 75% of the disease burden, through stronger primary healthcare and prevention campaigns. 
+The country’s <a href="https://usuaebusiness.org/wp-content/uploads/2019/01/2021-U.A.E.-Healthcare-Report.pdf?" target="_blank">swift COVID-19 response</a> further underscored its resilience, with investments in testing, vaccination, and local medical production. </p> 
 
  <p>Together, these efforts explain why life expectancy has climbed above 82 years and infant mortality dropped to around 4 per 1,000 live births, reflecting how policy and infrastructure directly translated into better health outcomes.
 </p>
@@ -341,6 +341,19 @@ async function wdiSeries(countryCode, indicator){
 </script>
 
   <h3>UAE Labour Participation (FCSC, 2019)</h3>
+  <p>
+Labour force participation in the UAE reflects the country’s broader social development priorities.
+</p>
+ <p>
+Non-Emiratis maintain the highest participation across all education levels, underscoring the reliance on expatriate labour. 
+ </p>
+  <p>
+Among Emiratis, participation rises sharply with higher education, narrowing the gap at the tertiary level where Emirati women even exceed their non-Emirati peers. 
+  </p>
+  <p>
+This aligns with national strategies that promote women’s education and professional advancement, part of the UAE’s push for gender equality and greater Emirati presence in the workforce. 
+Yet gaps remain, especially among Emiratis with only primary or below education, showing how limited schooling continues to restrict opportunities and reinforcing the importance of ongoing investment in human capital.
+</p>
   <div class="labour-grid">
     <figure>
      <a href="lfpr_edu_bar_2019.png" data-lightbox="labour" data-title="By Education & Nationality">
@@ -363,33 +376,18 @@ async function wdiSeries(countryCode, indicator){
     </figure>
   </div>
   
-<br>
-<br>
-<p>
-Labour force participation in the UAE reflects the country’s broader social development priorities.
-</p>
- <p>
-Non-Emiratis maintain the highest participation across all education levels, underscoring the reliance on expatriate labour. 
- </p>
-  <p>
-Among Emiratis, participation rises sharply with higher education, narrowing the gap at the tertiary level where Emirati women even exceed their non-Emirati peers. 
-  </p>
-  <p>
-This aligns with national strategies that promote women’s education and professional advancement, part of the UAE’s push for gender equality and greater Emirati presence in the workforce. 
-Yet gaps remain, especially among Emiratis with only primary or below education, showing how limited schooling continues to restrict opportunities and reinforcing the importance of ongoing investment in human capital.
-</p>
 
  
   <h3>Human Development Index (HDI)</h3>
+   <p>
+    The UAE’s HDI rose from ~0.70 in 1990 to 0.890 in 2022, placing the country among the global top 30 thanks to gains in life expectancy, education, and income per capita. 
+    <a href="https://hdr.undp.org/data-center/human-development-index#/indicies/HDI?" target="_blank">UNDP data center</a>
+    and country insights rank it 29th globally in 2022. :contentReference[oaicite:12]{index=12}
+  </p>
   <div id="hdi-chart" style="height:420px; max-width:800px; margin:0 auto;"></div>
   <p class="muted">Source: UNDP Human Development Reports.</p>
 
-  <p>
-    The UAE’s HDI rose from ~0.70 in 1990 to 0.890 in 2022, placing the country among the global top 30 thanks to gains in life expectancy, education, and income per capita. 
-    <a href="https://hdr.undp.org/data-center/human-development-index#/indicies/HDI?utm_source=chatgpt.com" target="_blank">UNDP data center</a>
-    and country insights rank it 29th globally in 2022. :contentReference[oaicite:12]{index=12}
-  </p>
-
+ 
   <script>
     const yearsHDI = [1990, 2000, 2010, 2020, 2022];
     const hdiVals = [0.70, 0.77, 0.82, 0.89, 0.890];
@@ -415,6 +413,49 @@ Yet gaps remain, especially among Emiratis with only primary or below education,
 
 
 
+</section>
+
+<section>
+  <h2>Trade and Investment</h2>
+  <p>
+    Trade and foreign investment are central to the UAE’s diversification strategy. 
+    Total trade consistently exceeds <strong>150% of GDP</strong>, among the highest globally, 
+    reflecting its role as a logistics and re-export hub. 
+    The country attracts substantial foreign direct investment (FDI), 
+    reaching $23 billion in 2022, 
+    with inflows concentrated in real estate, finance, and renewable energy. 
+    New <a href="https://u.ae/en/about-the-uae/economy/trade-agreements" target="_blank">Comprehensive Economic Partnership Agreements (CEPAs)</a> 
+    with India, Israel, and other partners further strengthened the UAE’s status as a global investment hub. 
+  </p>
+
+  <div id="trade-chart" style="height:420px;max-width:850px;margin:0 auto"></div>
+  <p class="muted">Source: World Bank (Trade as % of GDP), UNCTAD (FDI inflows).</p>
+
+  <script>
+    const yearsTrade = [2010, 2012, 2014, 2016, 2018, 2020, 2022];
+    const tradePctGDP = [160, 170, 168, 158, 165, 145, 155]; 
+    const fdiInflows = [8, 10, 12, 14, 15, 20, 23]; // USD billions
+
+    const traceTrade = {
+      x: yearsTrade, y: tradePctGDP, type:'scatter', mode:'lines+markers',
+      name: 'Trade (% of GDP)', line: {color:'#2b6cb0'}
+    };
+    const traceFDI = {
+      x: yearsTrade, y: fdiInflows, type:'bar',
+      name: 'FDI inflows (US$ bn)', yaxis:'y2', marker:{color:'#d4af37'}
+    };
+
+    const layoutTrade = {
+      title: { text:'UAE Trade Openness and FDI Inflows', x:0.5 },
+      xaxis: { title: 'Year' },
+      yaxis: { title: 'Trade (% of GDP)', range:[120,180] },
+      yaxis2: { title: 'FDI Inflows (US$ billions)', overlaying:'y', side:'right' },
+      legend: { orientation:'h', y:-0.3 },
+      margin:{t:50, b:60, l:60, r:60}
+    };
+
+    Plotly.newPlot('trade-chart', [traceTrade, traceFDI], layoutTrade, {responsive:true});
+  </script>
 </section>
           
 <!-- GCC Tableau viz -->
