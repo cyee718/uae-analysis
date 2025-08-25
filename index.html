@@ -10,6 +10,9 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
       <script src="https://public.tableau.com/javascripts/api/viz_v1.js"></script>
  <script src="https://cdn.jsdelivr.net/npm/plotly.js-dist-min@2.30.0/plotly.min.js"></script>
+ <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css" rel="stylesheet" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js"></script>
+
 <style>
  :root{
     --bg:#ffffff;      
@@ -275,15 +278,22 @@ the UAE Vision 2030 diversification strategy.
   <h1>UAE Labour Participation (FCSC, 2019)</h1>
   <div class="labour-grid">
     <figure>
-      <img class="zoomable" src="lfpr_edu_bar_2019.png" alt="LFPR by education and nationality">
+     <a href="lfpr_edu_bar_2019.png" data-lightbox="labour" data-title="By Education & Nationality">
+      <img src="lfpr_edu_bar_2019.png" alt="LFPR by education and nationality">
+    </a>
       <figcaption>By Education & Nationality</figcaption>
     </figure>
+   
     <figure>
-      <img class="zoomable" src="lfpr_gap_2019.png" alt="Gap in LFPR by education and gender">
+       <a href="lfpr_gap_2019.png" data-lightbox="labour" data-title="Gap (Non-Emirati − Emirati)">
+      <img src="lfpr_gap_2019.png" alt="Gap in LFPR by education and gender">
+    </a>
       <figcaption>Gap (Non‑Emirati − Emirati)</figcaption>
     </figure>
     <figure>
-      <img class="zoomable" src="gender_plot.png" alt="LFPR by gender and nationality">
+        <a href="gender_plot.png" data-lightbox="labour" data-title="By Gender & Nationality">
+      <img src="gender_plot.png" alt="LFPR by gender and nationality">
+    </a>
       <figcaption>By Gender & Nationality</figcaption>
     </figure>
   </div>
