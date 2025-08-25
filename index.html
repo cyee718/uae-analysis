@@ -511,8 +511,8 @@ async function wdi(country, indicator){
     }
   .timeline-item{
       position:relative; flex:0 0 180px; 
-   padding-top:24px;
-      text-align:center;
+   padding-top:calc(var(--rail-top) + var(--dot-size) + 14px);
+      scroll-snap-align:center;
     }
 
    .dot{
