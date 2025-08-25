@@ -485,49 +485,135 @@ async function wdi(country, indicator){
 </script>
 </section>
         
-<!-- GCC Tableau viz -->
-    <section>
-  <h2>GCC Nationals Visiting the UAE</h2>
-  <p>
-    The following visual shows the number of GCC nationals visiting the UAE from 2010 to 2015.
-    <br><br>
-    Between 2013 and 2015, the number of GCC nationals visiting the UAE rose sharply, with total regional arrivals increasing from under 1 million in 2013 to over 4 million by 2015- a near 300% surge. This spike coincided with several macroeconomic and policy developments. <br><br>In late 2013, Dubai secured its bid to host Expo 2020, triggering extensive infrastructure investment and a boost in regional tourism confidence. Real GDP growth in the UAE remained strong during this period, averaging 4.5% annually, supported by diversification efforts and high public spending despite global oil price fluctuations. 
-    <br><br>
-    Additionally, the UAE’s political stability and liberalised retail and hospitality sectors positioned it as a safe, high-value destination amid broader regional uncertainty following the Arab Spring. The increase was especially notable among Saudi and Qatari visitors, likely driven by eased cross-border mobility, rising disposable incomes, and the appeal of Dubai’s growing status as a luxury and events tourism hub.
-  </p>
 
-  <div class='tableauPlaceholder' id='viz1753979191148' style='width: 100%; height: 600px;'>
-    <noscript>
-      <a href='#'>
-        <img alt='GCC Nationals count visiting the UAE'
-             src='https://public.tableau.com/static/images/GC/GCCNationalscountvisitingtheUAE/Sheet1/1_rss.png'
-             style='border: none' />
-      </a>
-    </noscript>
-    <object class='tableauViz'>
-      <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' />
-      <param name='embed_code_version' value='3' />
-      <param name='site_root' value='' />
-      <param name='name' value='GCCNationalscountvisitingtheUAE/Sheet1' />
-      <param name='tabs' value='no' />
-      <param name='toolbar' value='yes' />
-      <param name='static_image' value='https://public.tableau.com/static/images/GC/GCCNationalscountvisitingtheUAE/Sheet1/1.png' />
-      <param name='animate_transition' value='yes' />
-      <param name='display_static_image' value='yes' />
-      <param name='display_spinner' value='yes' />
-      <param name='display_overlay' value='yes' />
-      <param name='display_count' value='yes' />
-      <param name='language' value='en-US' />
-    </object>
+<section class="uae-infographic" aria-label="UAE – Sustainability & Future Economy">
+  <style>
+    .uae-infographic{--bg:#0b1220;--card:#121a2b;--ink:#eef3ff;--muted:#b7c3e0;--accent:#78e3a0;--accent2:#70c3ff;--accent3:#ffd166;--accent4:#f29bc0;
+      font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Arial,sans-serif;background:var(--bg);color:var(--ink);padding:28px;border-radius:20px}
+    .uae-infographic h2{margin:0 0 12px;font-size:1.6rem;letter-spacing:.2px}
+    .uae-infographic p.lead{margin:0 0 22px;color:var(--muted)}
+    .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+    @media (max-width:980px){.grid{grid-template-columns:1fr 1fr}}
+    @media (max-width:560px){.grid{grid-template-columns:1fr}}
+    .card{background:var(--card);border:1px solid rgba(255,255,255,.06);border-radius:18px;padding:18px;box-shadow:0 6px 20px rgba(0,0,0,.25)}
+    .eyebrow{display:flex;align-items:center;gap:8px;color:var(--muted);font-size:.92rem;margin:0 0 10px}
+    .dot{width:9px;height:9px;border-radius:50%}
+    .dot.energy{background:var(--accent)}
+    .dot.h2{background:var(--accent2)}
+    .dot.netzero{background:var(--accent3)}
+    .dot.digital{background:var(--accent4)}
+    .kpi{font-size:1.9rem;font-weight:700;line-height:1.2;margin:0 0 6px}
+    .sub{margin:0 0 12px;color:var(--muted);font-size:.98rem}
+    .impact{margin:0;font-size:.98rem}
+    .foot{color:var(--muted);font-size:.86rem;margin-top:10px}
+    sup.ref{font-size:.75em;vertical-align:super;opacity:.9}
+    .badges{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+    .badge{font-size:.76rem;color:#0b1220;background:#e8f7ff;border-radius:999px;padding:6px 10px}
+  </style>
+
+  <h2>UAE – Sustainability & Future Economy</h2>
+  <p class="lead">Four pillars signalling forward‑looking resilience & innovation.</p>
+
+  <div class="grid">
+    <!-- Clean Energy -->
+    <article class="card">
+      <div class="eyebrow"><span class="dot energy" aria-hidden="true"></span><span>Clean Energy (Solar · Masdar)</span></div>
+      <div class="kpi">MBR Solar Park: 7.26&nbsp;GW by 2030<sup class="ref">[1]</sup></div>
+      <p class="sub">Already 3.66&nbsp;GW commissioned (PV&nbsp;+&nbsp;CSP). Largest single‑site solar park (IPP model) in the world.</p>
+      <p class="impact">→ Reliable, utility‑scale clean power; multi‑phase pipeline de‑risks delivery.</p>
+      <div class="badges"><span class="badge">CSP storage</span><span class="badge">Utility‑scale PV</span></div>
+      <p class="foot">Key actor: DEWA · ecosystem: Masdar</p>
+    </article>
+
+    <!-- H2 -->
+    <article class="card">
+      <div class="eyebrow"><span class="dot h2" aria-hidden="true"></span><span>Hydrogen (National Strategy)</span></div>
+      <div class="kpi">1.4 → 7.5 → 15&nbsp;Mtpa (2031→2040→2050)<sup class="ref">[2]</sup></div>
+      <p class="sub">Scaled low‑emission H<sub>2</sub> (green&nbsp;+&nbsp;blue); local demand ~2.7&nbsp;Mtpa by 2031.</p>
+      <p class="impact">→ Decarbonises hard‑to‑abate sectors; export potential strengthens energy security.</p>
+      <div class="badges"><span class="badge">Green + Blue</span><span class="badge">Industrial off‑take</span></div>
+      <p class="foot">Targets anchored in UAE Hydrogen Strategy 2050</p>
+    </article>
+
+    <!-- Net0 -->
+    <article class="card">
+      <div class="eyebrow"><span class="dot netzero" aria-hidden="true"></span><span>UAE Net Zero 2050</span></div>
+      <div class="kpi">Net‑Zero by 2050; −47% GHG by 2035 (vs 2019)<sup class="ref">[3][4]</sup></div>
+      <p class="sub">National pathway aligns climate goals with economic diversification.</p>
+      <p class="impact">→ Investment signals for clean power, industry, transport, buildings & waste.</p>
+      <div class="badges"><span class="badge">Economy‑wide</span><span class="badge">Paris‑aligned</span></div>
+      <p class="foot">Long‑term pathway + interim NDC</p>
+    </article>
+
+    <!-- Smart Economy -->
+    <article class="card">
+      <div class="eyebrow"><span class="dot digital" aria-hidden="true"></span><span>Smart City & Digital Economy</span></div>
+      <div class="kpi">Digital GDP → 19.4% (10‑yr goal)<sup class="ref">[5]</sup></div>
+      <p class="sub">Dubai ranks <strong>#4 globally</strong> in IMD Smart City Index 2025; AI could reach ~14% of UAE GDP by 2030.<sup class="ref">[6][7]</sup></p>
+      <p class="impact">→ Tech‑led productivity, fintech depth, and city‑scale digital services.</p>
+      <div class="badges"><span class="badge">Fintech</span><span class="badge">AI & Data</span><span class="badge">e‑Gov</span></div>
+      <p class="foot">Strategies: Digital Economy · AI</p>
+    </article>
   </div>
 </section>
 
-<script type='text/javascript'>
-  var divElement = document.getElementById('viz1753979191148');
-  var vizElement = divElement.getElementsByTagName('object')[0];
-  vizElement.style.width = '100%';
-  vizElement.style.height = '600px'; // fallback
-</script>
+
+
+<section class="uae-timeline" aria-label="UAE Sustainability and Future Economy Timeline">
+  <style>
+    .uae-timeline{font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Arial,sans-serif;padding:32px;max-width:900px;margin:auto}
+    .uae-timeline h2{font-size:1.8rem;margin-bottom:20px;text-align:center}
+    .timeline{position:relative;margin:0;padding:0;list-style:none}
+    .timeline::before{content:"";position:absolute;left:20px;top:0;bottom:0;width:3px;background:#e5e7eb}
+    .timeline-item{position:relative;margin-bottom:28px;padding-left:50px}
+    .timeline-item:last-child{margin-bottom:0}
+    .dot{position:absolute;left:12px;top:4px;width:16px;height:16px;background:#2563eb;border-radius:50%;border:3px solid #fff;box-shadow:0 0 0 2px #2563eb}
+    .year{font-weight:700;font-size:1.1rem;margin-bottom:6px}
+    .title{font-weight:600;color:#111827;margin:0 0 4px}
+    .desc{margin:0;color:#374151;font-size:.95rem;line-height:1.4}
+  </style>
+
+  <h2>UAE – Path to 2050</h2>
+  <ul class="timeline">
+    <li class="timeline-item">
+      <span class="dot"></span>
+      <div class="year">2010s</div>
+      <p class="title">Foundations of Clean Energy</p>
+      <p class="desc">Masdar launched, Mohammed bin Rashid Solar Park initiated, setting the stage for large-scale renewable deployment.</p>
+    </li>
+    <li class="timeline-item">
+      <span class="dot"></span>
+      <div class="year">2020</div>
+      <p class="title">Expo 2020 & Sustainability Push</p>
+      <p class="desc">UAE showcased sustainability themes, invested in digital infrastructure, and positioned itself as a hub for innovation.</p>
+    </li>
+    <li class="timeline-item">
+      <span class="dot"></span>
+      <div class="year">2025</div>
+      <p class="title">Solar & Hydrogen Scale-up</p>
+      <p class="desc">Over 3.6 GW of solar capacity online; pilot hydrogen projects launched with National Strategy milestones (1.4 Mtpa by 2031).</p>
+    </li>
+    <li class="timeline-item">
+      <span class="dot"></span>
+      <div class="year">2030</div>
+      <p class="title">Net Zero Milestones</p>
+      <p class="desc">30% renewables in energy mix; Solar Park capacity reaches 7.26 GW; digital economy to reach ~20% of GDP.</p>
+    </li>
+    <li class="timeline-item">
+      <span class="dot"></span>
+      <div class="year">2040</div>
+      <p class="title">Hydrogen Expansion</p>
+      <p class="desc">Hydrogen production ramps to 7.5 Mtpa; UAE positioned as a global green hydrogen exporter.</p>
+    </li>
+    <li class="timeline-item">
+      <span class="dot"></span>
+      <div class="year">2050</div>
+      <p class="title">Net Zero Achievement</p>
+      <p class="desc">Full decarbonisation across energy, transport, industry, and smart city infrastructure. UAE meets its Net Zero 2050 target.</p>
+    </li>
+  </ul>
+</section>
+
 
   
 
