@@ -299,7 +299,7 @@ The country’s <a href="https://usuaebusiness.org/wp-content/uploads/2019/01/20
 <script>
  window.addEventListener('DOMContentLoaded', async () => {
 async function wdiSeries(countryCode, indicator){
-  const url = `https://api.worldbank.org/v2/country/${countryCode}/indicator/${indicator}?format=json&per_page=80`;
+  const url = `https://api.worldbank.org/v2/country/${countryCode}/indicator/${indicator}?format=json&per_page=200`;
   const res = await fetch(url);
   const json = await res.json();
   const rows = (json && json[1]) ? json[1] : [];
@@ -311,12 +311,10 @@ async function wdiSeries(countryCode, indicator){
   try {
     const life = await wdiSeries('ARE', 'SP.DYN.LE00.IN');
     const imr  = await wdiSeries('ARE', 'SP.DYN.IMRT.IN');
-
     const years = life.map(d => d.year).filter(y => imr.some(e => e.year === y));
     const lifeY = years.map(y => life.find(d => d.year === y).val);
     const imrY  = years.map(y => imr.find(d => d.year === y).val);
-
-    const t1 = { x: years, y: lifeY, name: 'Life expectancy (years)',
+   const t1 = { x: years, y: lifeY, name: 'Life expectancy (years)',
                  type: 'scatter', mode: 'lines+markers' };
     const t2 = { x: years, y: imrY,  name: 'Infant mortality (per 1,000)',
                  type: 'scatter', mode: 'lines+markers', yaxis: 'y2' };
@@ -328,7 +326,9 @@ async function wdiSeries(countryCode, indicator){
       yaxis:  { title: 'Life expectancy (years)' },
       yaxis2: { title: 'Infant mortality (per 1,000)', overlaying: 'y', side: 'right' },
       legend: { orientation: 'h', y: -0.25 }
-    }, {responsive:true});
+    };
+       Plotly.newPlot('health-live', [t1, t2], layout, {responsive:true});
+
   } catch (e) {
     console.error(e);
     document.getElementById('health-live').innerHTML =
@@ -336,6 +336,8 @@ async function wdiSeries(countryCode, indicator){
   }
 });
 </script>
+
+ 
 
   <h3>UAE Labour Participation (FCSC, 2019)</h3>
   <p>
@@ -465,7 +467,7 @@ async function wdi(country, indicator){
       marker: { size: 5 },
       name: 'Trade (% of GDP)',
       hovertemplate: '%{x}: <b>%{y:.1f}%</b><extra></extra>'
-    }],{
+    };
     const layout = {
       title: { text: 'UAE Trade (% of GDP), 2001–2023', x: 0.5 },
       margin: { t: 50, l: 60, r: 30, b: 50 },
