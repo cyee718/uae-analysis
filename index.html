@@ -501,13 +501,13 @@ async function wdi(country, indicator){
     .uae-timeline h2{font-size:1.6rem;margin: 0 0 18px;text-align:center}
    
 .timeline{display:flex;align-items:flex-start;
-  position:relative; gap: 10px; list-style:none; padding:64px 8px 8px;margin:0; overflow-x: auto}
+  position:relative; gap: 10px; list-style:none; padding:64px 8px 8px;margin:0; overflow-x: auto; scroll-snap-type:x proximity;}
 
   .timeline::-webkit-scrollbar{ height:8px }
     .timeline::-webkit-scrollbar-thumb{ background:#d1d5db; border-radius:8px }
 
   .timeline::before{
-     content:"";position:absolute; left:0; right:0; top:32px; height:3px; background:var(--rail)
+     content:"";position:absolute; left:0; right:0; top:var(--rail-top); height:3px; background:var(--rail)
     }
   .timeline-item{
       position:relative; flex:0 0 180px; 
