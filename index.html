@@ -493,7 +493,7 @@ async function wdi(country, indicator){
   <style>
     .uae-timeline{--rail:#e5e7eb; --ink:#111827; --muted:#374151; --accent:#2563eb;
      font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Arial,sans-serif;
-                  padding:24px;max-width:1100px;margin:auto, color:var(--ink);
+                  padding:24px;max-width:1100px;margin:auto; color:var(--ink);
                  }
     .uae-timeline h2{font-size:1.6rem;margin: 0 0 18px;text-align:center}
    
@@ -504,7 +504,7 @@ async function wdi(country, indicator){
     .timeline::-webkit-scrollbar-thumb{ background:#d1d5db; border-radius:8px }
 
   .timeline::before{
-     position:relative; left:0; right:0; top:32px; height:3px; background:var(--rail)
+     content:"";position:absolute; left:0; right:0; top:32px; height:3px; background:var(--rail)
     }
   .timeline-item{
       position:relative; flex:0 0 180px; 
@@ -544,7 +544,7 @@ async function wdi(country, indicator){
     <li class="timeline-item">
       <span class="dot"></span>
       <div class="year">2020</div>
-      <p class="title">Expo 2020/p>
+      <p class="title">Expo 2020</p>
       <p class="desc">Expo highlighted sustainability and digital growth.</p>
     </li>
     <li class="timeline-item">
