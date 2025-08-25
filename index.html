@@ -94,10 +94,72 @@
 <!-- Real GDP -->
 <section>
   <h2>UAE Real GDP</h2>
+ <section>
   <div id="uae-gdp-level" style="width:100%;max-width:900px;height:420px;margin:16px auto;"></div>
- <p style="color:#666;font-size:0.9rem;margin:8px auto 0;max-width:900px;">
-    Source: World Bank (real GDP).
-  </p>
+  <script>
+  window.addEventListener('DOMContentLoaded', async () => {
+    const el = document.getElementById('uae-gdp-level');
+    try {
+      const url = 'https://api.worldbank.org/v2/country/ARE/indicator/NY.GDP.MKTP.KD?format=json&per_page=80';
+      const res = await fetch(url);
+      const json = await res.json();
+      const rows = (json && json[1]) ? json[1] : [];
+
+      const series = rows
+        .filter(d => d.value !== null)
+        .map(d => ({ year: +d.date, val: +d.value }))
+        .sort((a, b) => a.year - b.year);
+
+      const x = series.map(d => d.year);
+      const y = series.map(d => d.val);
+
+      Plotly.newPlot('uae-gdp-level', [{
+        x, y,
+        type: 'scatter',
+        mode: 'lines+markers',
+        name: 'Real GDP (constant 2015 US$)',
+        hovertemplate: '%{x}: <b>%{y:,.0f}</b><extra></extra>'
+      }], {
+        title: { text: 'UAE Real GDP (constant 2015 US$)', x: 0.5 },
+        xaxis: { title: 'Year', tickformat: 'd' },
+        yaxis: { title: 'US dollars (constant 2015)', separatethousands: tr
+
+ <script>
+window.addEventListener('DOMContentLoaded', async () => {
+  const el = document.getElementById('uae-gdp-level');
+  try {
+    const url = 'https://api.worldbank.org/v2/country/ARE/indicator/NY.GDP.MKTP.KD?format=json&per_page=80';
+    const res = await fetch(url);
+    const json = await res.json();
+    const rows = (json && json[1]) ? json[1] : [];
+
+    const series = rows
+      .filter(d => d.value !== null)
+      .map(d => ({ year: +d.date, val: +d.value }))  
+      .sort((a, b) => a.year - b.year);
+
+    const x = series.map(d => d.year);
+    const y = series.map(d => d.val);
+
+    Plotly.newPlot('uae-gdp-level', [{
+      x, y,
+      type: 'scatter',
+      mode: 'lines+markers',
+      name: 'Real GDP (constant 2015 US$)',
+      hovertemplate: '%{x}: <b>%{y:,.0f}</b><extra></extra>'
+    }], {
+      title: { text: 'UAE Real GDP (constant 2015 US$)', x: 0.5 },
+      xaxis: { title: 'Year', tickformat: 'd' },
+      yaxis: { title: 'US dollars (constant 2015)', separatethousands: true },
+      margin: { t: 50, l: 70, r: 20, b: 50 }
+    }, { responsive: true });
+  } catch (e) {
+    console.error(e);
+    el.innerHTML = '<div style="color:#b00;text-align:center">Could not load World Bank data.</div>';
+  }
+});
+</script>
+
   <p>
     In 2009 the UAE economy was hit hard by the global financial crisis. <strong>Dubai property prices fell by more than 50 percent</strong> and <strong>hydrocarbon export revenues dropped by about 45 percent</strong>. 
    By 2010 the picture had changed. <strong>Oil prices moved higher</strong> and demand began to return. See the <a href="https://www.imf.org/external/pubs/ft/scr/2010/cr1042.pdf" target="_blank" rel="noopener">IMF staff report</a> and the <a href="https://www.eia.gov/dnav/pet/hist/rbrtem.htm" target="_blank" rel="noopener">EIA Brent series</a> for the data points that frame this shift.
