@@ -415,23 +415,23 @@ Yet gaps remain, especially among Emiratis with only primary or below education,
 <section>
   <h2>Trade and Investment</h2>
  <p>
-The UAE has consistently ranked among the world’s most **trade-open economies**,  
-with trade flows (exports plus imports) regularly exceeding **150% of GDP** since the early 2000s.  
+The UAE has consistently ranked among the world’s most trade-open economies,  
+with trade flows (exports plus imports) regularly exceeding <b>150% of GDP</b> since the early 2000s.  
 </p>
 
 <p>
-The ratio rose sharply in the early 2010s, reflecting **booming oil exports** and the country’s role  
-as a global **re-export hub**.  
+The ratio rose sharply in the early 2010s, reflecting <b>booming oil exports</b> and the country’s role  
+as a global re-export hub.  
 </p>
 
 <p>
-After a dip during the **2015–2016 oil price slump** and again in **2020 amid COVID-19 disruptions**,  
-trade openness rebounded strongly, surpassing **200% of GDP by 2023**.  
+After a dip during the <b>2015–2016 oil price slump</b> and again in <b>2020 amid COVID-19 disruptions</b>,  
+trade openness rebounded strongly, surpassing <b>200% of GDP by 2023</b>.  
 </p>
 
 <p>
-This trajectory highlights both the UAE’s structural **reliance on international trade**  
-and its success in positioning itself as a **logistics and services hub** for the wider Middle East, Africa and Asia.  
+This trajectory highlights both the UAE’s structural reliance on <b>international trade</b>
+and its success in positioning itself as a <b>logistics and services hub</b>for the wider Middle East, Africa and Asia.  
 </p>
 
 <div id="uae-trade-gdp" style="height:460px;max-width:900px;margin:0 auto"></div>
@@ -453,7 +453,7 @@ async function wdi(country, indicator){
 }
 
   try {
-    const series = await wdi('ARE','NE.TRD.GNFS.ZS');  // Trade (% of GDP)
+    const series = await wdi('ARE','NE.TRD.GNFS.ZS');  
     const x = series.map(d => d.year);
     const y = series.map(d => d.val);
 
@@ -466,22 +466,20 @@ async function wdi(country, indicator){
       name: 'Trade (% of GDP)',
       hovertemplate: '%{x}: <b>%{y:.1f}%</b><extra></extra>'
     }],{
-    
+    const layout = {
       title: { text: 'UAE Trade (% of GDP), 2001–2023', x: 0.5 },
       margin: { t: 50, l: 60, r: 30, b: 50 },
       xaxis: { title: 'Year', dtick: 2, tickformat: 'd' },
       yaxis: { title: 'Percent of GDP', rangemode: 'tozero' },
         showlegend:false
-    }, {responsive:true});
+    };
+   Plotly.newPlot('uae-trade-gdp', [trace], layout, {responsive:true});
   } catch(e){
     console.error(e);
     document.getElementById('uae-trade-gdp').innerHTML =
       '<div style="color:#b00;text-align:center">Could not load World Bank data.</div>';
   }
 });
-      }],
-      showlegend: false
-    };
 </script>
 </section>
 <!-- GCC Tableau viz -->
