@@ -486,88 +486,23 @@ async function wdi(country, indicator){
 </section>
         
 
-<section class="uae-infographic" aria-label="UAE – Sustainability & Future Economy">
-  <style>
-    .uae-infographic{--bg:#0b1220;--card:#121a2b;--ink:#eef3ff;--muted:#b7c3e0;--accent:#78e3a0;--accent2:#70c3ff;--accent3:#ffd166;--accent4:#f29bc0;
-      font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Arial,sans-serif;background:var(--bg);color:var(--ink);padding:28px;border-radius:20px}
-    .uae-infographic h2{margin:0 0 12px;font-size:1.6rem;letter-spacing:.2px}
-    .uae-infographic p.lead{margin:0 0 22px;color:var(--muted)}
-    .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
-    @media (max-width:980px){.grid{grid-template-columns:1fr 1fr}}
-    @media (max-width:560px){.grid{grid-template-columns:1fr}}
-    .card{background:var(--card);border:1px solid rgba(255,255,255,.06);border-radius:18px;padding:18px;box-shadow:0 6px 20px rgba(0,0,0,.25)}
-    .eyebrow{display:flex;align-items:center;gap:8px;color:var(--muted);font-size:.92rem;margin:0 0 10px}
-    .dot{width:9px;height:9px;border-radius:50%}
-    .dot.energy{background:var(--accent)}
-    .dot.h2{background:var(--accent2)}
-    .dot.netzero{background:var(--accent3)}
-    .dot.digital{background:var(--accent4)}
-    .kpi{font-size:1.9rem;font-weight:700;line-height:1.2;margin:0 0 6px}
-    .sub{margin:0 0 12px;color:var(--muted);font-size:.98rem}
-    .impact{margin:0;font-size:.98rem}
-    .foot{color:var(--muted);font-size:.86rem;margin-top:10px}
-    sup.ref{font-size:.75em;vertical-align:super;opacity:.9}
-    .badges{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
-    .badge{font-size:.76rem;color:#0b1220;background:#e8f7ff;border-radius:999px;padding:6px 10px}
-  </style>
-
+    
   <h2>UAE – Sustainability & Future Economy</h2>
-  <p class="lead">Four pillars signalling forward‑looking resilience & innovation.</p>
-
-  <div class="grid">
-    <!-- Clean Energy -->
-    <article class="card">
-      <div class="eyebrow"><span class="dot energy" aria-hidden="true"></span><span>Clean Energy (Solar · Masdar)</span></div>
-      <div class="kpi">MBR Solar Park: 7.26&nbsp;GW by 2030<sup class="ref">[1]</sup></div>
-      <p class="sub">Already 3.66&nbsp;GW commissioned (PV&nbsp;+&nbsp;CSP). Largest single‑site solar park (IPP model) in the world.</p>
-      <p class="impact">→ Reliable, utility‑scale clean power; multi‑phase pipeline de‑risks delivery.</p>
-      <div class="badges"><span class="badge">CSP storage</span><span class="badge">Utility‑scale PV</span></div>
-      <p class="foot">Key actor: DEWA · ecosystem: Masdar</p>
-    </article>
-
-    <!-- H2 -->
-    <article class="card">
-      <div class="eyebrow"><span class="dot h2" aria-hidden="true"></span><span>Hydrogen (National Strategy)</span></div>
-      <div class="kpi">1.4 → 7.5 → 15&nbsp;Mtpa (2031→2040→2050)<sup class="ref">[2]</sup></div>
-      <p class="sub">Scaled low‑emission H<sub>2</sub> (green&nbsp;+&nbsp;blue); local demand ~2.7&nbsp;Mtpa by 2031.</p>
-      <p class="impact">→ Decarbonises hard‑to‑abate sectors; export potential strengthens energy security.</p>
-      <div class="badges"><span class="badge">Green + Blue</span><span class="badge">Industrial off‑take</span></div>
-      <p class="foot">Targets anchored in UAE Hydrogen Strategy 2050</p>
-    </article>
-
-    <!-- Net0 -->
-    <article class="card">
-      <div class="eyebrow"><span class="dot netzero" aria-hidden="true"></span><span>UAE Net Zero 2050</span></div>
-      <div class="kpi">Net‑Zero by 2050; −47% GHG by 2035 (vs 2019)<sup class="ref">[3][4]</sup></div>
-      <p class="sub">National pathway aligns climate goals with economic diversification.</p>
-      <p class="impact">→ Investment signals for clean power, industry, transport, buildings & waste.</p>
-      <div class="badges"><span class="badge">Economy‑wide</span><span class="badge">Paris‑aligned</span></div>
-      <p class="foot">Long‑term pathway + interim NDC</p>
-    </article>
-
-    <!-- Smart Economy -->
-    <article class="card">
-      <div class="eyebrow"><span class="dot digital" aria-hidden="true"></span><span>Smart City & Digital Economy</span></div>
-      <div class="kpi">Digital GDP → 19.4% (10‑yr goal)<sup class="ref">[5]</sup></div>
-      <p class="sub">Dubai ranks <strong>#4 globally</strong> in IMD Smart City Index 2025; AI could reach ~14% of UAE GDP by 2030.<sup class="ref">[6][7]</sup></p>
-      <p class="impact">→ Tech‑led productivity, fintech depth, and city‑scale digital services.</p>
-      <div class="badges"><span class="badge">Fintech</span><span class="badge">AI & Data</span><span class="badge">e‑Gov</span></div>
-      <p class="foot">Strategies: Digital Economy · AI</p>
-    </article>
-  </div>
-</section>
-
-
 
 <section class="uae-timeline" aria-label="UAE Sustainability and Future Economy Timeline">
   <style>
     .uae-timeline{font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Arial,sans-serif;padding:32px;max-width:900px;margin:auto}
     .uae-timeline h2{font-size:1.8rem;margin-bottom:20px;text-align:center}
-    .timeline{position:relative;margin:0;padding:0;list-style:none}
-    .timeline::before{content:"";position:absolute;left:20px;top:0;bottom:0;width:3px;background:#e5e7eb}
-    .timeline-item{position:relative;margin-bottom:28px;padding-left:50px}
+.timeline{display:flex;justify-content:space-between;align-items:flex-start;
+  position:relative;list-style:none;padding:0;margin:0}
+.timeline::before{content:"";position:absolute;top:30px;left:0;right:0;
+  height:3px;background:#e5e7eb}
+
+   .timeline-item{position:relative;text-align:center;width:16%;z-index:1}
+
     .timeline-item:last-child{margin-bottom:0}
-    .dot{position:absolute;left:12px;top:4px;width:16px;height:16px;background:#2563eb;border-radius:50%;border:3px solid #fff;box-shadow:0 0 0 2px #2563eb}
+    .dot{width:18px;height:18px;border-radius:50%;margin:auto}
+
     .year{font-weight:700;font-size:1.1rem;margin-bottom:6px}
     .title{font-weight:600;color:#111827;margin:0 0 4px}
     .desc{margin:0;color:#374151;font-size:.95rem;line-height:1.4}
