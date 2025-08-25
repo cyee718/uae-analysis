@@ -500,8 +500,11 @@ async function wdi(country, indicator){
                  }
     .uae-timeline h2{font-size:1.6rem;margin: 0 0 18px;text-align:center}
    
-.timeline{display:flex;align-items:flex-start;
-  position:relative; gap: 10px; list-style:none; padding:64px 8px 8px;margin:0; overflow-x: auto; scroll-snap-type:x proximity;}
+.timeline{
+  position:relative; display:flex; gap:28px; align-items:flex-start;
+  list-style:none; padding:0 8px 8px; margin:calc(var(--rail-top) + var(--dot-size) + 12px) 0 0;
+  overflow-x:auto; scroll-snap-type:x proximity;
+}
 
   .timeline::-webkit-scrollbar{ height:8px }
     .timeline::-webkit-scrollbar-thumb{ background:#d1d5db; border-radius:8px }
@@ -509,29 +512,29 @@ async function wdi(country, indicator){
   .timeline::before{
      content:"";position:absolute; left:0; right:0; top:var(--rail-top); height:3px; background:var(--rail)
     }
+   
   .timeline-item{
-      position:relative; flex:0 0 180px; 
-   padding-top:calc(var(--rail-top) + var(--dot-size) + 14px);
+      position:relative; flex:0 0 190px; text-align:center;
+   padding-top:calc(var(--dot-size) + 16px);
       scroll-snap-align:center;
     }
 
    .dot{
-      width:18px; height:18px; border-radius:50%;
-      background:var(--accent);
-      border:3px solid #fff; box-shadow:0 0 0 2px var(--accent);
-      position:absolute; top:23px; left:50%; transform:translateX(-50%);
+  position:absolute; left:50%; top:var(--rail-top); transform:translate(-50%, -50%);
+  width:var(--dot-size); height:var(--dot-size); border-radius:50%;
+  background:var(--accent); border:var(--dot-border) solid #fff; box-shadow:0 0 0 2px var(--accent);
     }
 
-    .year{font-weight:800; margin-top:0}
+    .year{font-weight:800; font-size:1.05rem;margin:0 0 4px}
     .title{margin:0 0 6px;font-weight:700; line-height:1.25}
-    .desc{margin:0;color:#374151;font-size:.9rem;line-height:1.4}
+    .desc{margin:0 auto;color:var(--muted);font-size:.9rem;line-height:1.35;max-width:190px}
 
        .title, .desc{word-break:keep-all}
 
        @media (max-width:600px){
-      .timeline-item{ flex-basis:160px }
+      .timeline-item{ flex-basis:170px }
         .year{font-size:1rem}
-      .title{ font-size:.95rem }
+      .title{ font-size:.96rem }
       .desc{ font-size:.85rem }
     }
   </style>
